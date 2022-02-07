@@ -1,5 +1,5 @@
 {
-    "id": "id_building:example_building:Floor2",
+    "id": "id_building:Floor2",
     "type": "Floor",
     "name": {
         "type": "Property",
@@ -12,9 +12,9 @@
     "roomsOnFloor": {
         "type": "Relationship",
         "object": [
-            "id_building:example_building:room4",
-            "id_building:example_building:room5",
-            "id_building:example_building:room6"
+            "id_building:room4",
+            "id_building:room5",
+            "id_building:room6"
         ]
     },
     "withinBuilding": {
