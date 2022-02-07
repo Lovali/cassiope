@@ -16,7 +16,7 @@
     },
     "floorsAboveGround": {
         "type": "Property",
-        "value": "2"
+        "value": 2
     },
     "@context": "Nothing for now"
 }
