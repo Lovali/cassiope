@@ -1,0 +1,22 @@
+{
+    "id": "url_du_serveur_que_code_kaname",
+    "type": "Building",
+    "address": {
+        "type": "Property",
+        "value": {
+            "addressLocality": "Club Jeux",
+            "postalCode": "91000",
+            "streetAddress": "the table in the entry",
+            "type": "PostalAddress"
+        }
+    },
+    "description": {
+        "type": "Property",
+        "value": "A simple example to train ourselves"
+    },
+    "floorsAboveGround": {
+        "type": "Property",
+        "value": "2"
+    },
+    "@context": "Nothing for now"
+}
