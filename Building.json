@@ -1,5 +1,5 @@
 {
-    "id": "url_du_serveur_que_code_kaname",
+    "id": "id_building:example_building",
     "type": "Building",
     "address": {
         "type": "Property",
