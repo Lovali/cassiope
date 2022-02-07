@@ -1,0 +1,55 @@
+{
+    "id": "id_building:example_building:Floor1",
+    "type": "Floor",
+    "name": {
+        "type": "Property",
+        "value": "Ground floor"
+    },
+    "numberOfRooms": {
+        "type": "Property",
+        "value": 3
+    },
+    "roomsOnFloor": {
+        "type": "Relationship",
+        "object": [
+            "id_building:example_building:room1",
+            "id_building:example_building:room2",
+            "id_building:example_building:room3"
+        ]
+    },
+    "withinBuilding": {
+        "type": "Relationship",
+        "object": "id_building:example_building"
+    },
+    "location": {
+        "type": "Geoproperty",
+        "value": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        10.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        10.0,
+                        6.0,
+                        0.0
+                    ],
+                    [
+                        0.0,
+                        6.0,
+                        0.0
+                    ]
+                ]
+            ]
+        }
+    },
+    "@context": "Nothing for now"
+}
