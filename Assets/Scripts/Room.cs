@@ -17,7 +17,7 @@ public class Room {
         return numberofWindows;
     }
 
-    public int[][] getCoordinates() {
+    public int[][] getCoordinates() { 
         return coordinates;
     }
 

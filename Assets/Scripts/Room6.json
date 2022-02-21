@@ -1,0 +1,52 @@
+{
+    "id": "id_building:room6",
+    "type": "Room",
+    "name": {
+        "type": "Property",
+        "value": "FF room 6"
+    },
+    "numbersOfDoors": {
+        "type": "Property",
+        "value": 0
+    },
+    "numberOfWindows": {
+        "type": "Property",
+        "value": 0
+    },
+    "onFloor": {
+        "type": "Relationship",
+        "object": "id_building:Floor2"
+    },
+    "location": {
+        "type": "Geoproperty",
+        "value": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [
+                        5.0,
+                        0.0,
+                        10.0
+                    ],
+                    [
+                        10.0,
+                        0.0,
+                        10.0
+                    ],
+                    [
+                        10.0,
+                        3.0,
+                        10.0
+                    ],
+                    [
+                        5.0,
+                        3.0,
+                        10.0
+                    ]
+                ]
+            ],
+            "height": 10.0
+        }
+    },
+    "@context": "Nothing for now"
+}

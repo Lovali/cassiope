@@ -13,6 +13,6 @@ public class JSONFloorParser {
         var roomsOnFloor = Floor.SelectToken("roomsOnFloor").Value<JObject>();
         int numberOfRooms = Floor.SelectToken("numberOfRooms").Value<int>();
         
-        Building building = new Building(nbFloorsAboveGround);
+        Floor floor = new Floor(roomsOnFloor, numberOfRooms);
     }
 }
