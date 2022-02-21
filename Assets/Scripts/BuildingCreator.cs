@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
-using Newtonsoft.Json.Linq;
 
 public class BuildingCreator : MonoBehaviour
 {
@@ -20,25 +19,28 @@ public class BuildingCreator : MonoBehaviour
     public Room roomParser()
     {
         var RoomString = File.ReadAllText("Room1.json");
-        var Room = JObject.Parse(RoomString);
-        var doors = Room.SelectToken("numbersOfDoors").Value<JObject>();
-        int nbDoors = doors.SelectToken("value").Value<int>();
-        var windows = Room.SelectToken("numberOfWindows").Value<JObject>();
-        int nbWindows = windows.SelectToken("value").Value<int>();
-        var location = Room.SelectToken("location").Value<JObject>();
-        var locationValue = location.SelectToken("value").Value<JObject>();
-        int[][] coordinates = locationValue.SelectToken("coordinates").Value<int[][]>();
-        Room room = new Room(nbDoors, nbWindows, coordinates);
+        Room room = JsonUtility.FromJson<Room>(RoomString);
+        //var doors = Room.SelectToken("numbersOfDoors").Value<JObject>();
+        //int nbDoors = doors.SelectToken("value").Value<int>();
+        //var windows = Room.SelectToken("numberOfWindows").Value<JObject>();
+        //int nbWindows = windows.SelectToken("value").Value<int>();
+        //var location = Room.SelectToken("location").Value<JObject>();
+        //var locationValue = location.SelectToken("value").Value<JObject>();
+        //int[][] coordinates = locationValue.SelectToken("coordinates").Value<int[][]>();
+        //Room room = new Room(nbDoors, nbWindows, coordinates);
         return room;
     }
 
     public void create(Room room)
     {
         int i;
-        int[][] coordinates = room.getCoordinates();
+        int[][][] coordinates = room.getCoordinates();
+        int[] coord = coordinates[0][1];
         for (i=0; i<4; i++)
         {
             Debug.Log("coordinates :" + coordinates);
+            Debug.Log("coucou");
+            Debug.Log(coord);
         }
     }
 

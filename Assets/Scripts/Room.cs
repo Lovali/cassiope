@@ -1,9 +1,9 @@
 public class Room {
     private int numberOfDoors;
     private int numberofWindows;
-    private int[][] coordinates;
+    private int[][][] coordinates;
 
-    public Room(int numberOfDoors, int numberofWindows, int[][] coordinates) {
+    public Room(int numberOfDoors, int numberofWindows, int[][][] coordinates) {
         this.numberOfDoors = numberOfDoors;
         this.numberofWindows = numberofWindows;
         this.coordinates = coordinates;
@@ -17,7 +17,7 @@ public class Room {
         return numberofWindows;
     }
 
-    public int[][] getCoordinates() { 
+    public int[][][] getCoordinates() { 
         return coordinates;
     }
 
@@ -29,7 +29,7 @@ public class Room {
         this.numberofWindows = numberofWindows;
     }
 
-    public void setCoordinates(int[][] coordinates) {
+    public void setCoordinates(int[][][] coordinates) {
         this.coordinates = coordinates;
     }
 }
