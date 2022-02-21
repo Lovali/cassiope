@@ -1,7 +1,7 @@
 public class Room {
-    private int numberOfDoors;
-    private int numberofWindows;
-    private int[][][] coordinates;
+    public int numberOfDoors;
+    public int numberofWindows;
+    public int [][][] coordinates;
 
     public Room(int numberOfDoors, int numberofWindows, int[][][] coordinates) {
         this.numberOfDoors = numberOfDoors;

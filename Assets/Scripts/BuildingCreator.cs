@@ -35,13 +35,12 @@ public class BuildingCreator : MonoBehaviour
     {
         int i;
         int[][][] coordinates = room.getCoordinates();
-        int[] coord = coordinates[0][1];
         for (i=0; i<4; i++)
         {
             Debug.Log("coordinates :" + coordinates);
             Debug.Log("coucou");
-            Debug.Log(coord);
         }
+        Debug.Log(room.getNumberOfDoors());
     }
 
 

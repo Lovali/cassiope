@@ -7,7 +7,7 @@
     },
     "numbersOfDoors": {
         "type": "Property",
-        "value": 0
+        "value": 100
     },
     "numberOfWindows": {
         "type": "Property",
