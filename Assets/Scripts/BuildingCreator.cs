@@ -13,6 +13,7 @@ public class BuildingCreator : MonoBehaviour
     private void Start()
     {
         Room room = roomParser();
+        create(room);
 
     }
 
@@ -30,4 +31,16 @@ public class BuildingCreator : MonoBehaviour
         Room room = new Room(nbDoors, nbWindows, coordinates);
         return room;
     }
+
+    public void create(Room room)
+    {
+        int i;
+        int[][] coordinates = room.getCoordinates();
+        for (i=0; i<4; i++)
+        {
+            Debug.Log("coordinates :" + coordinates);
+        }
+    }
+
+
 }
