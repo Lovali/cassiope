@@ -28,6 +28,7 @@ public class BuildingCreator : MonoBehaviour
         var locationValue = location.SelectToken("value").Value<JObject>();
         int[][] coordinates = locationValue.SelectToken("coordinates").Value<int[][]>();
         Room room = new Room(nbDoors, nbWindows, coordinates);
+        Debug.Log("coucou");
         return room;
     }
 }
