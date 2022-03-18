@@ -2,10 +2,10 @@ public class Floor {
 
     private int numberOfRooms;
     private int[] roomsOnFloor;
-    private int[][] coordinates;
+    private double[][] coordinates;
     private int height;
 
-    public Floor(int numberOfRooms, int[] roomsOnFloor, int[][] coordinates, int height)
+    public Floor(int numberOfRooms, int[] roomsOnFloor, double[][] coordinates, int height)
     {
         this.numberOfRooms = numberOfRooms;
         this.roomsOnFloor = roomsOnFloor;
@@ -23,7 +23,7 @@ public class Floor {
         return roomsOnFloor;
     }
 
-    public int[][] getCoordinates()
+    public double[][] getCoordinates()
     {
         return coordinates;
     }
@@ -43,7 +43,7 @@ public class Floor {
         this.roomsOnFloor = roomsOnFloor;
     }
 
-    public void setCoordinates(int[][] coordinates)
+    public void setCoordinates(double[][] coordinates)
     {
         this.coordinates = coordinates;
     }
