@@ -1,9 +1,11 @@
+using System.Collections.Generic;
+
 public class Room {
     private int numberOfDoors;
     private int numberofWindows;
-    private int[][] coordinates;
+    private double[][] coordinates;
 
-    public Room(int numberOfDoors, int numberofWindows, int[][] coordinates) {
+    public Room(int numberOfDoors, int numberofWindows, double[][] coordinates) {
         this.numberOfDoors = numberOfDoors;
         this.numberofWindows = numberofWindows;
         this.coordinates = coordinates;
@@ -17,7 +19,7 @@ public class Room {
         return numberofWindows;
     }
 
-    public int[][] getCoordinates() {
+    public double[][] getCoordinates() {
         return coordinates;
     }
 
@@ -29,7 +31,7 @@ public class Room {
         this.numberofWindows = numberofWindows;
     }
 
-    public void setCoordinates(int[][] coordinates) {
+    public void setCoordinates(double[][] coordinates) {
         this.coordinates = coordinates;
     }
 }

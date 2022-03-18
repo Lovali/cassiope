@@ -16,7 +16,8 @@ public class JSONRoomParser
         int nbWindows = windows.SelectToken("value").Value<int>();
         var location = Room.SelectToken("location").Value<JObject>();
         var locationValue = location.SelectToken("value").Value<JObject>();
-        int[][] coordinates = locationValue.SelectToken("coordinates").Value<int[][]>();
+        //List<string> coordinates = locationValue.SelectToken("coordinates").Value<JArray>("coordinates").Value<String>();
+        double[][] coordinates = new double[4][];
         Room room = new Room(nbDoors, nbWindows, coordinates);
     }
 }

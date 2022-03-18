@@ -18,7 +18,7 @@ public class BuildingCreator : MonoBehaviour
 
     public Room roomParser()
     {
-        var RoomString = File.ReadAllText("Room1.json");
+        var RoomString = File.ReadAllText("Room1.json").Replace("'", "\"");
         var Room = JObject.Parse(RoomString);
         var doors = Room.SelectToken("numbersOfDoors").Value<JObject>();
         int nbDoors = doors.SelectToken("value").Value<int>();
@@ -26,9 +26,28 @@ public class BuildingCreator : MonoBehaviour
         int nbWindows = windows.SelectToken("value").Value<int>();
         var location = Room.SelectToken("location").Value<JObject>();
         var locationValue = location.SelectToken("value").Value<JObject>();
-        int[][] coordinates = locationValue.SelectToken("coordinates").Value<int[][]>();
+        object[][] JArrayCoordinates = locationValue.SelectToken("coordinates").Value<JArray>().ToObject<object[][][]>();
+        double[][] coordinates = new double[4][];
+        coordinates[0] = new double[3];
+        coordinates[1] = new double[3];
+        coordinates[2] = new double[3];
+        coordinates[3] = new double[3];
+        int i = 0;
+        int j = 0;
+        foreach (object[][] firstTab in JArrayCoordinates)
+        {
+            foreach (object[] secondTab in firstTab)
+            {
+                foreach (object x in secondTab)
+                {
+                    coordinates[i][j] = Convert.ToDouble(x);
+                    j++;
+                }
+                i++;
+                j = 0;
+            }
+        }
         Room room = new Room(nbDoors, nbWindows, coordinates);
-        Debug.Log("coucou");
         return room;
     }
 }
