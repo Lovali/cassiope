@@ -115,16 +115,49 @@ public class BuildingCreator : MonoBehaviour
 
     public void CreatingRoom(double[][] coordinates, int height)
     {
-        float height1 = (float)height / 2;
+        float heightWall = (float)height / 2;
+        Debug.Log("height1: " + heightWall);
+
         //Putting an absolute value to be sure the wall have a positive scale
         float width1 = Mathf.Abs((float)coordinates[1][0] - (float)coordinates[0][0]);
         float x1 = width1 / 2;
         float z1 = ((float)coordinates[0][1] + (float)coordinates[1][1]) / 2;
-        GameObject wall1 = Instantiate(wall, new Vector3(x1,height1, z1), Quaternion.identity);
+        GameObject wall1 = Instantiate(wall, new Vector3(x1,heightWall, z1), Quaternion.identity);
         Debug.Log("width1: " + width1);
-        Debug.Log("height1: " + height1);
         Debug.Log("x1: " + x1);
-        wall1.transform.localScale = new Vector3(width1, height, 1.0f);
+        Debug.Log("z1: " + z1);
+        wall1.transform.localScale = new Vector3(width1, height, 0.1f);
+
+        float width2 = Mathf.Abs((float)coordinates[3][0] - (float)coordinates[2][0]);
+        float x2 = width2 / 2;
+        float z2 = ((float)coordinates[2][1] + (float)coordinates[3][1]) / 2;
+        GameObject wall2 = Instantiate(wall, new Vector3(x2, heightWall, z2), Quaternion.identity);
+        Debug.Log("width2: " + width2);
+        Debug.Log("x2: " + x2);
+        Debug.Log("z2: " + z2);
+        wall2.transform.localScale = new Vector3(width2, height, 0.1f);
+
+        float width3 = Mathf.Abs((float)coordinates[2][1] - (float)coordinates[1][1]);
+        float x3 = ((float)coordinates[1][0] + (float)coordinates[2][0]) / 2;
+        float z3 = (float)coordinates[2][1] - (((float)coordinates[2][1] - (float)coordinates[1][1]) / 2);
+        GameObject wall3 = Instantiate(wall, new Vector3(x3, heightWall, z3), Quaternion.identity);
+        Debug.Log("width3: " + width3);
+        Debug.Log("x3: " + x3);
+        Debug.Log("z3: " + z3);
+        wall3.transform.localScale = new Vector3(width3, height, 0.1f);
+        //Here wwe must implement another method in case the rooms aren't square
+        wall3.transform.Rotate(new Vector3(0, 90, 0));
+        //wall3.transform.localRotation = new Vector3.Vector3(0, 90, 0);
+
+        float width4 = Mathf.Abs((float)coordinates[3][1] - (float)coordinates[0][1]);
+        float x4 = ((float)coordinates[3][0] + (float)coordinates[0][0]) / 2;
+        float z4 = (float)coordinates[3][1] - (((float)coordinates[3][1] - (float)coordinates[0][1]) / 2);
+        GameObject wall4 = Instantiate(wall, new Vector3(x4, heightWall, z4), Quaternion.identity);
+        Debug.Log("width4: " + width4);
+        Debug.Log("x4: " + x4);
+        Debug.Log("z4: " + z4);
+        wall4.transform.localScale = new Vector3(width4, height, 0.1f);
+        wall4.transform.Rotate(new Vector3(0, 90, 0));
 
     }
 }
