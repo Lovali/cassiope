@@ -112,6 +112,6 @@ public class BuildingCreator : MonoBehaviour
     {
         GameObject wall1 = Instantiate(wall, new Vector3(0, 0, 0), Quaternion.identity);
         double width1 = coordinates[1][1] - coordinates[0][1];
-        wall1.transform.localScale = new Vector3(width1, 8.0, 9.0);
+        wall1.transform.localScale = new Vector3((float)width1, 8.0f, 9.0f);
     }
 }
