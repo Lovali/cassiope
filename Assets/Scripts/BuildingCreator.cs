@@ -116,11 +116,14 @@ public class BuildingCreator : MonoBehaviour
     public void CreatingRoom(double[][] coordinates, int height)
     {
         float height1 = (float)height / 2;
-        GameObject wall1 = Instantiate(wall, new Vector3(0,height1, 0), Quaternion.identity);
         //Putting an absolute value to be sure the wall have a positive scale
         float width1 = Mathf.Abs((float)coordinates[1][0] - (float)coordinates[0][0]);
+        float x1 = width1 / 2;
+        float z1 = ((float)coordinates[0][1] + (float)coordinates[1][1]) / 2;
+        GameObject wall1 = Instantiate(wall, new Vector3(x1,height1, z1), Quaternion.identity);
         Debug.Log("width1: " + width1);
         Debug.Log("height1: " + height1);
+        Debug.Log("x1: " + x1);
         wall1.transform.localScale = new Vector3(width1, height, 1.0f);
 
     }
