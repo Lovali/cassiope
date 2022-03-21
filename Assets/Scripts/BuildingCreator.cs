@@ -12,8 +12,14 @@ public class BuildingCreator : MonoBehaviour
 
     private void Start()
     {
+        Building building = BuildingParser();
+        int n = building.getnbFloorsAboveGround();
+        for (int i=0; i<n; i++)
+        {
+            Floor floor = FloorParser();
+        }
         Room room = RoomParser();
-
+        CreatingRoom(room.getCoordinates());
     }
 
     public Room RoomParser()
@@ -95,5 +101,17 @@ public class BuildingCreator : MonoBehaviour
         int nbFloorsAboveGround = floorsAboveGround.SelectToken("value").Value<int>();
         Building building = new Building(nbFloorsAboveGround);
         return building;
+    }
+
+    public void CreatingFloor()
+    {
+
+    }
+
+    public void CreatingRoom(double[][] coordinates)
+    {
+        GameObject wall1 = Instantiate(wall, new Vector3(0, 0, 0), Quaternion.identity);
+        double width1 = coordinates[1][1] - coordinates[0][1];
+        wall1.transform.localScale = new Vector3(width1, 8.0, 9.0);
     }
 }
