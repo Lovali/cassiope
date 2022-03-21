@@ -14,12 +14,12 @@ public class BuildingCreator : MonoBehaviour
     {
         Building building = BuildingParser();
         int n = building.getnbFloorsAboveGround();
-        for (int i=0; i<n; i++)
-        {
-            Floor floor = FloorParser();
-        }
+        //for (int i=0; i<n; i++)
+        //{
+            //Floor floor = FloorParser();
+        //}
         Room room = RoomParser();
-        CreatingRoom(room.getCoordinates());
+        CreatingRoom(room.getCoordinates(), room.getHeight());
     }
 
     public Room RoomParser()
@@ -32,8 +32,10 @@ public class BuildingCreator : MonoBehaviour
         int nbWindows = windows.SelectToken("value").Value<int>();
         var location = Room.SelectToken("location").Value<JObject>();
         var locationValue = location.SelectToken("value").Value<JObject>();
+        int height = locationValue.SelectToken("height").Value<int>();
         object[][] JArrayCoordinates = locationValue.SelectToken("coordinates").Value<JArray>().ToObject<object[][][]>();
         double[][] coordinates = new double[4][];
+        //setting the size of the tables inside coordinates (x,y,z for each)
         coordinates[0] = new double[3];
         coordinates[1] = new double[3];
         coordinates[2] = new double[3];
@@ -47,13 +49,16 @@ public class BuildingCreator : MonoBehaviour
                 foreach (object x in secondTab)
                 {
                     coordinates[i][j] = Convert.ToDouble(x);
+                    //Debug.Log("i : " + i);
+                    //Debug.Log("j : " + j);
+                    //Debug.Log(coordinates[i][j]);
                     j++;
                 }
                 i++;
                 j = 0;
             }
         }
-        Room room = new Room(nbDoors, nbWindows, coordinates);
+        Room room = new Room(nbDoors, nbWindows, coordinates, height);
         return room;
     }
 
@@ -108,10 +113,15 @@ public class BuildingCreator : MonoBehaviour
 
     }
 
-    public void CreatingRoom(double[][] coordinates)
+    public void CreatingRoom(double[][] coordinates, int height)
     {
-        GameObject wall1 = Instantiate(wall, new Vector3(0, 0, 0), Quaternion.identity);
-        double width1 = coordinates[1][1] - coordinates[0][1];
-        wall1.transform.localScale = new Vector3((float)width1, 8.0f, 9.0f);
+        float height1 = (float)height / 2;
+        GameObject wall1 = Instantiate(wall, new Vector3(0,height1, 0), Quaternion.identity);
+        //Putting an absolute value to be sure the wall have a positive scale
+        float width1 = Mathf.Abs((float)coordinates[1][0] - (float)coordinates[0][0]);
+        Debug.Log("width1: " + width1);
+        Debug.Log("height1: " + height1);
+        wall1.transform.localScale = new Vector3(width1, height, 1.0f);
+
     }
 }

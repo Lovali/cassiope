@@ -4,11 +4,13 @@ public class Room {
     private int numberOfDoors;
     private int numberofWindows;
     private double[][] coordinates;
+    private int height;
 
-    public Room(int numberOfDoors, int numberofWindows, double[][] coordinates) {
+    public Room(int numberOfDoors, int numberofWindows, double[][] coordinates, int height) {
         this.numberOfDoors = numberOfDoors;
         this.numberofWindows = numberofWindows;
         this.coordinates = coordinates;
+        this.height = height;
     }
 
     public int getNumberOfDoors() {
@@ -21,6 +23,11 @@ public class Room {
 
     public double[][] getCoordinates() {
         return coordinates;
+    }
+
+    public int getHeight()
+    {
+        return height;
     }
 
     public void setNumberOfDoors(int numberOfDoors) {
