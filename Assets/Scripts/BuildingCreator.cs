@@ -18,13 +18,17 @@ public class BuildingCreator : MonoBehaviour
         //{
             //Floor floor = FloorParser();
         //}
-        Room room = RoomParser();
-        CreatingRoom(room.getCoordinates(), room.getHeight());
+        Room room1 = RoomParser("Room1.json");
+        Room room2 = RoomParser("Room2.json");
+        Room room3 = RoomParser("Room3.json");
+        CreatingRoom(room1.getCoordinates(), room1.getHeight());
+        CreatingRoom(room2.getCoordinates(), room2.getHeight());
+        CreatingRoom(room3.getCoordinates(), room3.getHeight());
     }
 
-    public Room RoomParser()
+    public Room RoomParser(String nom_fichier)
     {
-        var RoomString = File.ReadAllText("Room1.json");
+        var RoomString = File.ReadAllText(nom_fichier);
         var Room = JObject.Parse(RoomString);
         var doors = Room.SelectToken("numbersOfDoors").Value<JObject>();
         int nbDoors = doors.SelectToken("value").Value<int>();
@@ -120,7 +124,7 @@ public class BuildingCreator : MonoBehaviour
 
         //Putting an absolute value to be sure the wall have a positive scale
         float width1 = Mathf.Abs((float)coordinates[1][0] - (float)coordinates[0][0]);
-        float x1 = width1 / 2;
+        float x1 = (float)coordinates[0][0] + (width1 / 2);
         float z1 = ((float)coordinates[0][1] + (float)coordinates[1][1]) / 2;
         GameObject wall1 = Instantiate(wall, new Vector3(x1,heightWall, z1), Quaternion.identity);
         Debug.Log("width1: " + width1);
@@ -129,7 +133,7 @@ public class BuildingCreator : MonoBehaviour
         wall1.transform.localScale = new Vector3(width1, height, 0.1f);
 
         float width2 = Mathf.Abs((float)coordinates[3][0] - (float)coordinates[2][0]);
-        float x2 = width2 / 2;
+        float x2 = (float)coordinates[3][0] + (width2 / 2);
         float z2 = ((float)coordinates[2][1] + (float)coordinates[3][1]) / 2;
         GameObject wall2 = Instantiate(wall, new Vector3(x2, heightWall, z2), Quaternion.identity);
         Debug.Log("width2: " + width2);
