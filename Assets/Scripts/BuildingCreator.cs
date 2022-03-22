@@ -16,8 +16,9 @@ public class BuildingCreator : MonoBehaviour
         int n = building.getnbFloorsAboveGround();
         //for (int i=0; i<n; i++)
         //{
-            //Floor floor = FloorParser();
+        //Floor floor = FloorParser();
         //}
+        Floor floor1 = FloorParser("Floor1.json");
         Room room1 = RoomParser("Room1.json");
         Room room2 = RoomParser("Room2.json");
         Room room3 = RoomParser("Room3.json");
@@ -42,7 +43,8 @@ public class BuildingCreator : MonoBehaviour
         int nbWindows = windows.SelectToken("value").Value<int>();
         var location = Room.SelectToken("location").Value<JObject>();
         var locationValue = location.SelectToken("value").Value<JObject>();
-        int height = locationValue.SelectToken("height").Value<int>();
+        var heightObject = Room.SelectToken("height").Value<JObject>();
+        int height = heightObject.SelectToken("value").Value<int>();
         object[][] JArrayCoordinates = locationValue.SelectToken("coordinates").Value<JArray>().ToObject<object[][][]>();
         double[][] coordinates = new double[4][];
         //setting the size of the tables inside coordinates (x,y,z for each)
@@ -72,17 +74,25 @@ public class BuildingCreator : MonoBehaviour
         return room;
     }
 
-    public Floor FloorParser()
+    public Floor FloorParser(String nom_fichier)
     {
-        var FloorString = File.ReadAllText("Floor1.json");
+        var FloorString = File.ReadAllText(nom_fichier);
         var Floor = JObject.Parse(FloorString);
         var nbOfRooms = Floor.SelectToken("numberOfRooms").Value<JObject>();
         int numberOfRooms = nbOfRooms.SelectToken("value").Value<int>();
         var roomsOnFloor = Floor.SelectToken("roomsOnFloor").Value<JObject>();
-        int[] objRoomsOnFloor = roomsOnFloor.SelectToken("object").Value<int[]>();
+        object[] arrayRoomsOnFloor = roomsOnFloor.SelectToken("object").Value<JArray>().ToObject<object[]>();
+        string[] objRoomsOnFloor = new string[numberOfRooms];
+        int k = 0;
+        foreach (object room in arrayRoomsOnFloor)
+        {
+            objRoomsOnFloor[k] = Convert.ToString(room);
+            k++;
+        }
         var location = Floor.SelectToken("location").Value<JObject>();
         var locationValue = location.SelectToken("value").Value<JObject>();
-        int height = locationValue.SelectToken("height").Value<int>();
+        var heightObject = Floor.SelectToken("height").Value<JObject>();
+        var height = heightObject.SelectToken("value").Value<int>();
         object[][] JArrayCoordinates = locationValue.SelectToken("coordinates").Value<JArray>().ToObject<object[][][]>();
         double[][] coordinates = new double[4][];
         coordinates[0] = new double[3];

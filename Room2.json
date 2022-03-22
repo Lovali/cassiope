@@ -45,8 +45,11 @@
                     ]
                 ]
             ],
-            "height": 2.0
         }
+    },
+    "height": {
+        "type": "Property",
+        "value": 2
     },
     "@context": "Nothing for now"
 }

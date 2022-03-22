@@ -1,11 +1,11 @@
 public class Floor {
 
     private int numberOfRooms;
-    private int[] roomsOnFloor;
+    private string[] roomsOnFloor;
     private double[][] coordinates;
     private int height;
 
-    public Floor(int numberOfRooms, int[] roomsOnFloor, double[][] coordinates, int height)
+    public Floor(int numberOfRooms, string[] roomsOnFloor, double[][] coordinates, int height)
     {
         this.numberOfRooms = numberOfRooms;
         this.roomsOnFloor = roomsOnFloor;
@@ -18,7 +18,7 @@ public class Floor {
         return numberOfRooms;
     }
 
-    public int[] getRoomsOnFloor()
+    public string[] getRoomsOnFloor()
     {
         return roomsOnFloor;
     }
@@ -38,7 +38,7 @@ public class Floor {
         this.numberOfRooms = numberOfRooms;
     }
 
-    public void setRoomsOnFloor(int[] roomsOnFloor)
+    public void setRoomsOnFloor(string[] roomsOnFloor)
     {
         this.roomsOnFloor = roomsOnFloor;
     }
