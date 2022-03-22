@@ -21,9 +21,15 @@ public class BuildingCreator : MonoBehaviour
         Room room1 = RoomParser("Room1.json");
         Room room2 = RoomParser("Room2.json");
         Room room3 = RoomParser("Room3.json");
+        Room room4 = RoomParser("Room4.json");
+        //Room room5 = RoomParser("Room5.json");
+        //Room room6 = RoomParser("Room6.json");
         CreatingRoom(room1.getCoordinates(), room1.getHeight());
         CreatingRoom(room2.getCoordinates(), room2.getHeight());
         CreatingRoom(room3.getCoordinates(), room3.getHeight());
+        CreatingRoom(room4.getCoordinates(), room4.getHeight());
+        //CreatingRoom(room5.getCoordinates(), room5.getHeight()+2);
+        //CreatingRoom(room6.getCoordinates(), room6.getHeight()+2);
     }
 
     public Room RoomParser(String nom_fichier)
@@ -119,8 +125,10 @@ public class BuildingCreator : MonoBehaviour
 
     public void CreatingRoom(double[][] coordinates, int height)
     {
-        float heightWall = (float)height / 2;
-        Debug.Log("height1: " + heightWall);
+        //height = la hauteur du mur (ici deux unités)
+        //heightWall = la hauteur a laquelle on va placer le centre du mur
+        float heightWall = ((float)height / 2) + (float)coordinates[0][2];
+        Debug.Log("heightWall: " + heightWall);
 
         //Putting an absolute value to be sure the wall have a positive scale
         float width1 = Mathf.Abs((float)coordinates[1][0] - (float)coordinates[0][0]);
