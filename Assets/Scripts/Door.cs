@@ -1,8 +1,8 @@
 ﻿public class Door {
     private double[][] coordinates;
-    private int height;
+    private double height;
 
-    public Door(double[][] coordinates, int height)
+    public Door(double[][] coordinates, double height)
     {
         this.coordinates = coordinates;
         this.height = height;
@@ -13,7 +13,7 @@
         return coordinates;
     }
 
-    public int getHeight()
+    public double getHeight()
     {
         return height;
     }
@@ -23,7 +23,7 @@
         this.coordinates = coordinates;
     }
 
-    public void setHeight(int height)
+    public void setHeight(double height)
     {
         this.height = height;
     }
