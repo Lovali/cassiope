@@ -21,19 +21,21 @@ public class BuildingCreator : MonoBehaviour
         //}
         //Floor floor1 = FloorParser("Floor1.json");
         Room room1 = RoomParser("Room1.json");
-        //Room room2 = RoomParser("Room2.json");
-        //Room room3 = RoomParser("Room3.json");
+        Room room2 = RoomParser("Room2.json");
+        Room room3 = RoomParser("Room3.json");
         //Room room4 = RoomParser("Room4.json");
         //Room room5 = RoomParser("Room5.json");
         //Room room6 = RoomParser("Room6.json");
         Door door1 = DoorParser("Door1.json");
+        Door door2 = DoorParser("Door2.json");
         CreatingRoom(room1.getCoordinates(), room1.getHeight());
-        //CreatingRoom(room2.getCoordinates(), room2.getHeight());
-        //CreatingRoom(room3.getCoordinates(), room3.getHeight());
+        CreatingRoom(room2.getCoordinates(), room2.getHeight());
+        CreatingRoom(room3.getCoordinates(), room3.getHeight());
         //CreatingRoom(room4.getCoordinates(), room4.getHeight());
         //CreatingRoom(room5.getCoordinates(), room5.getHeight()+2);
         //CreatingRoom(room6.getCoordinates(), room6.getHeight()+2);
         creatingDoor(door1.getCoordinates(), door1.getHeight());
+        creatingDoor(door2.getCoordinates(), door2.getHeight());
     }
 
     public Room RoomParser(String nom_fichier)
@@ -251,10 +253,21 @@ public class BuildingCreator : MonoBehaviour
     public void creatingDoor(double[][] coordinates, double height)
     {
         float heightDoor = ((float)height / 2) + (float)coordinates[0][2];
-        Debug.Log(heightDoor);
-        float width1 = Mathf.Abs((float)coordinates[1][0] - (float)coordinates[0][0]);
-        float x1 = (float)coordinates[0][0] + (width1 / 2);
-        float z1 = ((float)coordinates[0][1] + (float)coordinates[1][1]) / 2;
-        GameObject door1 = Instantiate(door, new Vector3(x1, heightDoor, z1), Quaternion.identity);
+        if (coordinates[0][1] == coordinates[1][1])
+        {
+            float width1 = Mathf.Abs((float)coordinates[1][0] - (float)coordinates[0][0]);
+            float x1 = (float)coordinates[0][0] + (width1 / 2);
+            float z1 = ((float)coordinates[0][1] + (float)coordinates[1][1]) / 2;
+            GameObject door1 = Instantiate(door, new Vector3(x1, heightDoor, z1), Quaternion.identity);
+            door1.transform.localScale = new Vector3(width1, (float)height, 0.2f);
+        } else
+        {
+            float width2 = Mathf.Abs((float)coordinates[1][1] - (float)coordinates[0][1]);
+            float x2 = ((float)coordinates[0][0] + (float)coordinates[1][0]) / 2;
+            float z2 = (float)coordinates[1][1] - (((float)coordinates[1][1] - (float)coordinates[0][1]) / 2);
+            GameObject wall3 = Instantiate(door, new Vector3(x2, heightDoor, z2), Quaternion.identity);
+            wall3.transform.localScale = new Vector3(width2, (float)height, 0.2f);
+            wall3.transform.Rotate(new Vector3(0, 90, 0));
+        }
     }
 }

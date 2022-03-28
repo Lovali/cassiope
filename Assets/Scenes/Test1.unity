@@ -231,6 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wall: {fileID: 1651957737802843839, guid: fcad070a111ef5c4390c2d61a32dab7b, type: 3}
   floor: {fileID: 3447738114613286240, guid: bc7f1d7e24180764a9806f5a4b78273d, type: 3}
+  door: {fileID: 1457596513137136941, guid: 11972aa3941918a4d8b3fadcf19f40f7, type: 3}
 --- !u!114 &343822467
 MonoBehaviour:
   m_ObjectHideFlags: 0
