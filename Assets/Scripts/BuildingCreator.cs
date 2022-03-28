@@ -20,7 +20,6 @@ public class BuildingCreator : MonoBehaviour
         for(int i=1; i<n+1; i++)
         {
             String name = "Floor" + i + ".json";
-            //Debug.Log("name: " + name);
             Floor floor = FloorParser(name);
             CreatingFloor(floor.getCoordinates(), floor.getHeight(), floor.getNumberOfRooms());
         }
@@ -112,9 +111,6 @@ public class BuildingCreator : MonoBehaviour
                 foreach (object x in secondTab)
                 {
                     coordinates[i][j] = Convert.ToDouble(x);
-                    //Debug.Log("i : " + i);
-                    //Debug.Log("j : " + j);
-                    //Debug.Log(coordinates[i][j]);
                     j++;
                 }
                 i++;
@@ -198,7 +194,6 @@ public class BuildingCreator : MonoBehaviour
         for(int i=1; i<numberOfRooms+1; i++)
         {
             String name = "Room" + i + ".json";
-            //Debug.Log("name: " + name);
             Room room = RoomParser(name);
             CreatingRoom(room.getCoordinates(), room.getHeight(), room.getNumberOfDoors(), room.getNumberOfWindows());
         }
@@ -238,7 +233,7 @@ public class BuildingCreator : MonoBehaviour
         //Debug.Log("x3: " + x3);
         //Debug.Log("z3: " + z3);
         wall3.transform.localScale = new Vector3(width3, height, 0.1f);
-        //Here wwe must implement another method in case the rooms aren't square
+        //Here we must implement another method in case the rooms aren't square
         wall3.transform.Rotate(new Vector3(0, 90, 0));
         //wall3.transform.localRotation = new Vector3.Vector3(0, 90, 0);
 
@@ -256,7 +251,6 @@ public class BuildingCreator : MonoBehaviour
         for(int i=1; i<nbDoors+1; i++)
         {
             String name = "Door" + i + ".json";
-            //Debug.Log("name: " + name);
             Door door = DoorParser(name);
             CreatingDoor(door.getCoordinates(), door.getHeight());
         }
@@ -264,7 +258,6 @@ public class BuildingCreator : MonoBehaviour
         for(int i=1; i<nbWindows+1; i++)
         {
             String name = "Window" + i + ".json";
-            //Debug.Log("name: " + name);
             Window window = WindowParser(name);
             CreatingWindow(window.getCoordinates(), window.getHeight());
         }
