@@ -30,16 +30,17 @@ public class BuildingCreator : MonoBehaviour
         //Room room4 = RoomParser("Room4.json");
         //Room room5 = RoomParser("Room5.json");
         //Room room6 = RoomParser("Room6.json");
-        Door door1 = DoorParser("Door1.json");
-        Door door2 = DoorParser("Door2.json");
         CreatingRoom(room1.getCoordinates(), room1.getHeight());
         CreatingRoom(room2.getCoordinates(), room2.getHeight());
         CreatingRoom(room3.getCoordinates(), room3.getHeight());
         //CreatingRoom(room4.getCoordinates(), room4.getHeight());
         //CreatingRoom(room5.getCoordinates(), room5.getHeight()+2);
         //CreatingRoom(room6.getCoordinates(), room6.getHeight()+2);
-        creatingDoor(door1.getCoordinates(), door1.getHeight());
-        creatingDoor(door2.getCoordinates(), door2.getHeight());
+
+        Door door1 = DoorParser("Door1.json");
+        Door door2 = DoorParser("Door2.json");
+        CreatingDoor(door1.getCoordinates(), door1.getHeight());
+        CreatingDoor(door2.getCoordinates(), door2.getHeight());
 
         Window window1 = WindowParser("Window1.json");
         Window window2 = WindowParser("Window2.json");
@@ -47,45 +48,17 @@ public class BuildingCreator : MonoBehaviour
         CreatingWindow(window2.getCoordinates(), window2.getHeight());
     }
 
-    public Room RoomParser(String nom_fichier)
+
+    //--------------------------------------------------------------- PARSERS --------------------------------------------------------------------------//
+    
+    public Building BuildingParser()
     {
-        var RoomString = File.ReadAllText(nom_fichier);
-        var Room = JObject.Parse(RoomString);
-        var doors = Room.SelectToken("numbersOfDoors").Value<JObject>();
-        int nbDoors = doors.SelectToken("value").Value<int>();
-        var windows = Room.SelectToken("numberOfWindows").Value<JObject>();
-        int nbWindows = windows.SelectToken("value").Value<int>();
-        var location = Room.SelectToken("location").Value<JObject>();
-        var locationValue = location.SelectToken("value").Value<JObject>();
-        var heightObject = Room.SelectToken("height").Value<JObject>();
-        int height = heightObject.SelectToken("value").Value<int>();
-        object[][][] JArrayCoordinates = locationValue.SelectToken("coordinates").Value<JArray>().ToObject<object[][][]>();
-        double[][] coordinates = new double[4][];
-        //setting the size of the tables inside coordinates (x,y,z for each)
-        coordinates[0] = new double[3];
-        coordinates[1] = new double[3];
-        coordinates[2] = new double[3];
-        coordinates[3] = new double[3];
-        int i = 0;
-        int j = 0;
-        foreach (object[][] firstTab in JArrayCoordinates)
-        {
-            foreach (object[] secondTab in firstTab)
-            {
-                foreach (object x in secondTab)
-                {
-                    coordinates[i][j] = Convert.ToDouble(x);
-                    //Debug.Log("i : " + i);
-                    //Debug.Log("j : " + j);
-                    //Debug.Log(coordinates[i][j]);
-                    j++;
-                }
-                i++;
-                j = 0;
-            }
-        }
-        Room room = new Room(nbDoors, nbWindows, coordinates, height);
-        return room;
+        var BuildingString = File.ReadAllText("Building.json");
+        var Building = JObject.Parse(BuildingString);
+        var floorsAboveGround = Building.SelectToken("floorsAboveGround").Value<JObject>();
+        int nbFloorsAboveGround = floorsAboveGround.SelectToken("value").Value<int>();
+        Building building = new Building(nbFloorsAboveGround);
+        return building;
     }
 
     public Floor FloorParser(String nom_fichier)
@@ -132,15 +105,47 @@ public class BuildingCreator : MonoBehaviour
         return floor;
     }
 
-    public Building BuildingParser()
+    public Room RoomParser(String nom_fichier)
     {
-        var BuildingString = File.ReadAllText("Building.json");
-        var Building = JObject.Parse(BuildingString);
-        var floorsAboveGround = Building.SelectToken("floorsAboveGround").Value<JObject>();
-        int nbFloorsAboveGround = floorsAboveGround.SelectToken("value").Value<int>();
-        Building building = new Building(nbFloorsAboveGround);
-        return building;
+        var RoomString = File.ReadAllText(nom_fichier);
+        var Room = JObject.Parse(RoomString);
+        var doors = Room.SelectToken("numbersOfDoors").Value<JObject>();
+        int nbDoors = doors.SelectToken("value").Value<int>();
+        var windows = Room.SelectToken("numberOfWindows").Value<JObject>();
+        int nbWindows = windows.SelectToken("value").Value<int>();
+        var location = Room.SelectToken("location").Value<JObject>();
+        var locationValue = location.SelectToken("value").Value<JObject>();
+        var heightObject = Room.SelectToken("height").Value<JObject>();
+        int height = heightObject.SelectToken("value").Value<int>();
+        object[][][] JArrayCoordinates = locationValue.SelectToken("coordinates").Value<JArray>().ToObject<object[][][]>();
+        double[][] coordinates = new double[4][];
+        //setting the size of the tables inside coordinates (x,y,z for each)
+        coordinates[0] = new double[3];
+        coordinates[1] = new double[3];
+        coordinates[2] = new double[3];
+        coordinates[3] = new double[3];
+        int i = 0;
+        int j = 0;
+        foreach (object[][] firstTab in JArrayCoordinates)
+        {
+            foreach (object[] secondTab in firstTab)
+            {
+                foreach (object x in secondTab)
+                {
+                    coordinates[i][j] = Convert.ToDouble(x);
+                    //Debug.Log("i : " + i);
+                    //Debug.Log("j : " + j);
+                    //Debug.Log(coordinates[i][j]);
+                    j++;
+                }
+                i++;
+                j = 0;
+            }
+        }
+        Room room = new Room(nbDoors, nbWindows, coordinates, height);
+        return room;
     }
+
 
     public Door DoorParser(String nom_fichier)
     {
@@ -204,6 +209,10 @@ public class BuildingCreator : MonoBehaviour
         return window;
     }
 
+
+    //------------------------------------------------------------------ CREATORS ---------------------------------------------------------------------//
+
+
     public void CreatingFloor()
     {
 
@@ -259,7 +268,7 @@ public class BuildingCreator : MonoBehaviour
 
     }
 
-    public void creatingDoor(double[][] coordinates, double height)
+    public void CreatingDoor(double[][] coordinates, double height)
     {
         float heightDoor = ((float)height / 2) + (float)coordinates[0][2];
         if (coordinates[0][1] == coordinates[1][1])
@@ -280,7 +289,7 @@ public class BuildingCreator : MonoBehaviour
         }
     }
 
-    public void CreatingWindow(double[][] coordinates, int height)
+    public void CreatingWindow(double[][] coordinates, double height)
     {
         float widthX = Mathf.Abs((float)coordinates[0][0] - (float)coordinates[1][0]);
         //si les deux coordonnes sont egales, ie leur difference vaut zéro, la fenetre est sur un mu orienté selon y
@@ -294,7 +303,7 @@ public class BuildingCreator : MonoBehaviour
             //Debug.Log("height above ground: " + heightAboveGround);
             //Debug.Log("widthY: " + widthY);
             GameObject window1 = Instantiate(window, new Vector3(0, heightAboveGround, y), Quaternion.identity);
-            window1.transform.localScale = new Vector3(widthY, height, 0.2f);
+            window1.transform.localScale = new Vector3(widthY, (float)height, 0.2f);
             window1.transform.Rotate(new Vector3(0, 90, 0));
 
         }
@@ -304,7 +313,7 @@ public class BuildingCreator : MonoBehaviour
             float x = (float)coordinates[1][0] - (((float)coordinates[1][0] - (float)coordinates[0][0]) / 2);
             float heightAboveGround = (float)coordinates[0][2] + ((float)height / 2);
             GameObject window1 = Instantiate(window, new Vector3(x, heightAboveGround, 0), Quaternion.identity);
-            window1.transform.localScale = new Vector3(widthX, height, 0.2f);
+            window1.transform.localScale = new Vector3(widthX, (float)height, 0.2f);
 
         }
     }
