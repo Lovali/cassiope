@@ -12,40 +12,19 @@ public class BuildingCreator : MonoBehaviour
     [SerializeField] GameObject door;
     [SerializeField] GameObject window;
 
+
     private void Start()
     {
         Building building = BuildingParser();
         int n = building.getnbFloorsAboveGround();
-        //for (int i=0; i<n; i++)
-        //{
-        //Floor floor = FloorParser();
-        //}
-        //Floor floor1 = FloorParser("Floor1.json");
-        Floor floor1 = FloorParser("Floor1.json");
+        for(int i=1; i<n+1; i++)
+        {
+            String name = "Floor" + i + ".json";
+            //Debug.Log("name: " + name);
+            Floor floor = FloorParser(name);
+            CreatingFloor(floor.getCoordinates(), floor.getHeight(), floor.getNumberOfRooms());
+        }
 
-
-        Room room1 = RoomParser("Room1.json");
-        Room room2 = RoomParser("Room2.json");
-        Room room3 = RoomParser("Room3.json");
-        //Room room4 = RoomParser("Room4.json");
-        //Room room5 = RoomParser("Room5.json");
-        //Room room6 = RoomParser("Room6.json");
-        CreatingRoom(room1.getCoordinates(), room1.getHeight());
-        CreatingRoom(room2.getCoordinates(), room2.getHeight());
-        CreatingRoom(room3.getCoordinates(), room3.getHeight());
-        //CreatingRoom(room4.getCoordinates(), room4.getHeight());
-        //CreatingRoom(room5.getCoordinates(), room5.getHeight()+2);
-        //CreatingRoom(room6.getCoordinates(), room6.getHeight()+2);
-
-        Door door1 = DoorParser("Door1.json");
-        Door door2 = DoorParser("Door2.json");
-        CreatingDoor(door1.getCoordinates(), door1.getHeight());
-        CreatingDoor(door2.getCoordinates(), door2.getHeight());
-
-        Window window1 = WindowParser("Window1.json");
-        Window window2 = WindowParser("Window2.json");
-        CreatingWindow(window1.getCoordinates(), window1.getHeight());
-        CreatingWindow(window2.getCoordinates(), window2.getHeight());
     }
 
 
@@ -213,12 +192,19 @@ public class BuildingCreator : MonoBehaviour
     //------------------------------------------------------------------ CREATORS ---------------------------------------------------------------------//
 
 
-    public void CreatingFloor()
+    public void CreatingFloor(double[][] coordinates, int height, int numberOfRooms)
     {
-
+        Debug.Log("In creating floor method");
+        for(int i=1; i<numberOfRooms+1; i++)
+        {
+            String name = "Room" + i + ".json";
+            //Debug.Log("name: " + name);
+            Room room = RoomParser(name);
+            CreatingRoom(room.getCoordinates(), room.getHeight(), room.getNumberOfDoors(), room.getNumberOfWindows());
+        }
     }
 
-    public void CreatingRoom(double[][] coordinates, int height)
+    public void CreatingRoom(double[][] coordinates, int height, int nbDoors, int nbWindows)
     {
         //height = la hauteur du mur (ici deux unités)
         //heightWall = la hauteur a laquelle on va placer le centre du mur
@@ -265,6 +251,23 @@ public class BuildingCreator : MonoBehaviour
         //Debug.Log("z4: " + z4);
         wall4.transform.localScale = new Vector3(width4, height, 0.1f);
         wall4.transform.Rotate(new Vector3(0, 90, 0));
+
+
+        for(int i=1; i<nbDoors+1; i++)
+        {
+            String name = "Door" + i + ".json";
+            //Debug.Log("name: " + name);
+            Door door = DoorParser(name);
+            CreatingDoor(door.getCoordinates(), door.getHeight());
+        }
+
+        for(int i=1; i<nbWindows+1; i++)
+        {
+            String name = "Window" + i + ".json";
+            //Debug.Log("name: " + name);
+            Window window = WindowParser(name);
+            CreatingWindow(window.getCoordinates(), window.getHeight());
+        }
 
     }
 
