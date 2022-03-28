@@ -22,13 +22,13 @@ public class BuildingCreator : MonoBehaviour
         Room room1 = RoomParser("Room1.json");
         Room room2 = RoomParser("Room2.json");
         Room room3 = RoomParser("Room3.json");
-        Room room4 = RoomParser("Room4.json");
+        //Room room4 = RoomParser("Room4.json");
         //Room room5 = RoomParser("Room5.json");
         //Room room6 = RoomParser("Room6.json");
         CreatingRoom(room1.getCoordinates(), room1.getHeight());
         CreatingRoom(room2.getCoordinates(), room2.getHeight());
         CreatingRoom(room3.getCoordinates(), room3.getHeight());
-        CreatingRoom(room4.getCoordinates(), room4.getHeight());
+        //CreatingRoom(room4.getCoordinates(), room4.getHeight());
         //CreatingRoom(room5.getCoordinates(), room5.getHeight()+2);
         //CreatingRoom(room6.getCoordinates(), room6.getHeight()+2);
     }
@@ -45,7 +45,7 @@ public class BuildingCreator : MonoBehaviour
         var locationValue = location.SelectToken("value").Value<JObject>();
         var heightObject = Room.SelectToken("height").Value<JObject>();
         int height = heightObject.SelectToken("value").Value<int>();
-        object[][] JArrayCoordinates = locationValue.SelectToken("coordinates").Value<JArray>().ToObject<object[][][]>();
+        object[][][] JArrayCoordinates = locationValue.SelectToken("coordinates").Value<JArray>().ToObject<object[][][]>();
         double[][] coordinates = new double[4][];
         //setting the size of the tables inside coordinates (x,y,z for each)
         coordinates[0] = new double[3];
@@ -126,6 +126,68 @@ public class BuildingCreator : MonoBehaviour
         int nbFloorsAboveGround = floorsAboveGround.SelectToken("value").Value<int>();
         Building building = new Building(nbFloorsAboveGround);
         return building;
+    }
+
+    public Door DoorParser(String nom_fichier)
+    {
+        var DoorString = File.ReadAllText(nom_fichier);
+        var Door = JObject.Parse(DoorString);
+        var location = Door.SelectToken("location").Value<JObject>();
+        var locationValue = location.SelectToken("value").Value<JObject>();
+        var heightObject = Door.SelectToken("height").Value<JObject>();
+        int height = heightObject.SelectToken("value").Value<int>();
+        object[][][] JArrayCoordinates = locationValue.SelectToken("coordinates").Value<JArray>().ToObject<object[][][]>();
+        double[][] coordinates = new double[2][];
+        coordinates[0] = new double[3];
+        coordinates[1] = new double[3];
+        int i = 0;
+        int j = 0;
+        foreach (object[][] firstTab in JArrayCoordinates)
+        {
+            foreach (object[] secondTab in firstTab)
+            {
+                foreach (object x in secondTab)
+                {
+                    coordinates[i][j] = Convert.ToDouble(x);
+                    j++;
+                }
+                i++;
+                j = 0;
+            }
+        }
+        Door door = new Door(coordinates, height);
+        return door;
+    }
+
+    public Window WindowParser(String nom_fichier)
+    {
+        var WindowString = File.ReadAllText(nom_fichier);
+        var Window = JObject.Parse(WindowString);
+        var location = Window.SelectToken("location").Value<JObject>();
+        var locationValue = location.SelectToken("value").Value<JObject>();
+        var heightObject = Window.SelectToken("height").Value<JObject>();
+        int height = heightObject.SelectToken("value").Value<int>();
+        object[][][] JArrayCoordinates = locationValue.SelectToken("coordinates").Value<JArray>().ToObject<object[][][]>();
+        double[][] coordinates = new double[2][];
+        coordinates[0] = new double[3];
+        coordinates[1] = new double[3];
+        int i = 0;
+        int j = 0;
+        foreach (object[][] firstTab in JArrayCoordinates)
+        {
+            foreach (object[] secondTab in firstTab)
+            {
+                foreach (object x in secondTab)
+                {
+                    coordinates[i][j] = Convert.ToDouble(x);
+                    j++;
+                }
+                i++;
+                j = 0;
+            }
+        }
+        Window window = new Window(coordinates, height);
+        return window;
     }
 
     public void CreatingFloor()

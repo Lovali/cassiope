@@ -1,0 +1,29 @@
+{
+    "id": "id_building:door1",
+    "type": "Door",
+    "location": {
+        "type":"Geoproperty",
+        "value": {
+            "type":"Linestring",
+            "coordinates": [
+                [
+                    [
+                        2.0,
+                        3.0,
+                        0.0
+                    ],
+                    [
+                        3.0,
+                        3.0,
+                        0.0
+                    ]
+                ]
+            ]
+        }
+    },
+    "height": {
+        "type": "Property",
+        "value": 1.5
+    },
+    "@context": "Nothing for now"
+}

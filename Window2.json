@@ -1,0 +1,29 @@
+{
+    "id": "id_building:window2",
+    "type": "Window",
+    "location": {
+        "type": "Geoproperty",
+        "value": {
+            "type": "Linestring",
+            "coordinates": [
+                [
+                    [
+                        2.0,
+                        6.0,
+                        0.5
+                    ],
+                    [
+                        3.0,
+                        6.0,
+                        0.5
+                    ]
+                ]
+            ]
+        }
+    },
+    "height": {
+        "type": "Property",
+        "value": 1.0
+    },
+    "@context": "Nothing for now"
+}

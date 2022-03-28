@@ -7,11 +7,25 @@
     },
     "numbersOfDoors": {
         "type": "Property",
-        "value": 0
+        "value": 2
     },
     "numberOfWindows": {
         "type": "Property",
-        "value": 0
+        "value": 2
+    },
+    "doorsInRoom": {
+        "type": "Relationship",
+        "object": [
+        "id_building:Door1",
+        "id_building:Door2"
+         ]
+    },
+    "windowsInRoom": {
+        "type": "Relationship",
+        "object": [
+        "id_building:Window1",
+        "id_building:Window2"
+         ]
     },
     "onFloor": {
         "type": "Relationship",
