@@ -20,6 +20,8 @@ public class BuildingCreator : MonoBehaviour
         //Floor floor = FloorParser();
         //}
         Floor floor1 = FloorParser("Floor1.json");
+
+
         Room room1 = RoomParser("Room1.json");
         Room room2 = RoomParser("Room2.json");
         Room room3 = RoomParser("Room3.json");
@@ -32,6 +34,11 @@ public class BuildingCreator : MonoBehaviour
         //CreatingRoom(room4.getCoordinates(), room4.getHeight());
         //CreatingRoom(room5.getCoordinates(), room5.getHeight()+2);
         //CreatingRoom(room6.getCoordinates(), room6.getHeight()+2);
+
+        Window window1 = WindowParser("Window1.json");
+        Window window2 = WindowParser("Window2.json");
+        CreatingWindow(window1.getCoordinates(), window1.getHeight());
+        CreatingWindow(window2.getCoordinates(), window2.getHeight());
     }
 
     public Room RoomParser(String nom_fichier)
@@ -253,10 +260,24 @@ public class BuildingCreator : MonoBehaviour
         if (widthX == 0)
         {
             float widthY = Mathf.Abs((float)coordinates[0][1] - (float)coordinates[1][1]);
-            float z = (float)coordinates[1][1] + (((float)coordinates[1][1] - (float)coordinates[0][1]) / 2);
-            float heightAboveGround = (float)coordinates[0][2];
-            GameObject window1 = Instantiate(window, new Vector3(0, heightAboveGround, z), Quaternion.identity);
+            float y = (float)coordinates[1][1] - (((float)coordinates[1][1] - (float)coordinates[0][1]) / 2);
+            float heightAboveGround = (float)coordinates[0][2] + ((float)height / 2);
+            //Debug.Log("coord z: " + (float)coordinates[0][2]);
+            //Debug.Log("height: " + height);
+            //Debug.Log("height above ground: " + heightAboveGround);
+            //Debug.Log("widthY: " + widthY);
+            GameObject window1 = Instantiate(window, new Vector3(0, heightAboveGround, y), Quaternion.identity);
             window1.transform.localScale = new Vector3(widthY, height, 0.2f);
+            window1.transform.Rotate(new Vector3(0, 90, 0));
+
+        }
+
+        else
+        {
+            float x = (float)coordinates[1][0] - (((float)coordinates[1][0] - (float)coordinates[0][0]) / 2);
+            float heightAboveGround = (float)coordinates[0][2] + ((float)height / 2);
+            GameObject window1 = Instantiate(window, new Vector3(x, heightAboveGround, 0), Quaternion.identity);
+            window1.transform.localScale = new Vector3(widthX, height, 0.2f);
 
         }
     }
