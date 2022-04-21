@@ -1,9 +1,9 @@
 {
-    "id": "Etoile:RoomH317",
+    "id": "Etoile:RoomH316",
     "type": "Room",
     "name": {
         "type": "Property",
-        "value": "Third floor room H317"
+        "value": "Third floor room H316"
     },
     "numbersOfDoors": {
         "type": "Property",
@@ -16,14 +16,14 @@
     "doorsInRoom": {
         "type": "Relationship",
         "object": [
-        "Etoile:RoomH317:Door1"
+        "Etoile:RoomH316:Door1"
          ]
     },
     "windowsInRoom": {
         "type": "Relationship",
         "object": [
-        "Etoile:RoomH317:Window1",
-        "Etoile:RoomH317:Window2"
+        "Etoile:RoomH316:Window1",
+        "Etoile:RoomH316:Window2"
          ]
     },
     "onFloor": {
@@ -37,22 +37,22 @@
             "coordinates": [
                 [
                     [
-                        9.0,
-                        0.0,
-                        0.0
-                    ],
-                    [
                         13.8,
                         0.0,
                         0.0
                     ],
                     [
-                        13.8,
+                        18.4,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        18.4,
                         3.4,
                         0.0
                     ],
                     [
-                        9.0,
+                        13.8,
                         3.4,
                         0.0
                     ]
