@@ -1,0 +1,29 @@
+{
+    "id": "Etoile:Window1",
+    "type": "Window",
+    "location": {
+        "type": "Geoproperty",
+        "value": {
+            "type": "Linestring",
+            "coordinates": [
+                [
+                    [
+                        9.0,
+                        0.0,
+                        0.5
+                    ],
+                    [
+                        8.0,
+                        0.0,
+                        0.5
+                    ]
+                ]
+            ]
+        }
+    },
+    "height": {
+        "type": "Property",
+        "value": 1.5
+    },
+    "@context": "Nothing for now"
+}
