@@ -1,0 +1,73 @@
+{
+    "id": "Etoile:Floor3",
+    "type": "Floor",
+    "name": {
+        "type": "Property",
+        "value": "Third floor"
+    },
+    "numberOfRooms": {
+        "type": "Property",
+        "value": 17
+    },
+    "roomsOnFloor": {
+        "type": "Relationship",
+        "object": [
+            "Etoile:roomH320",
+            "Etoile:roomH317",
+            "Etoile:roomH316",
+            "Etoile:roomH315",
+            "Etoile:roomH314",
+            "Etoile:roomH313",
+            "Etoile:roomH312",
+            "Etoile:roomH311",
+            "Etoile:roomH310",
+            "Etoile:roomH327",
+            "Etoile:roomH300",
+            "Etoile:roomH326",
+            "Etoile:roomH325",
+            "Etoile:roomH324",
+            "Etoile:roomASC",
+            "Etoile:roomH323",
+            "Etoile:roomH301"
+        ]
+    },
+    "withinBuilding": {
+        "type": "Relationship",
+        "object": "Etoile:example_building"
+    },
+    "location": {
+        "type": "Geoproperty",
+        "value": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        56.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        56.0,
+                        9.0,
+                        0.0
+                    ],
+                    [
+                        0.0,
+                        9.0,
+                        0.0
+                    ]
+                ]
+            ]
+        }
+    },
+    "height": {
+        "type": "Property",
+        "value": 3
+    },
+    "@context": "Nothing for now"
+}
