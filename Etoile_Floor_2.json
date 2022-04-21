@@ -1,0 +1,59 @@
+{
+    "id": "Etoile:Floor2",
+    "type": "Floor",
+    "name": {
+        "type": "Property",
+        "value": "Second floor"
+    },
+    "numberOfRooms": {
+        "type": "Property",
+        "value": 3
+    },
+    "roomsOnFloor": {
+        "type": "Relationship",
+        "object": [
+            "id_building:room1",
+            "id_building:room2",
+            "id_building:room3"
+        ]
+    },
+    "withinBuilding": {
+        "type": "Relationship",
+        "object": "id_building:example_building"
+    },
+    "location": {
+        "type": "Geoproperty",
+        "value": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        10.0,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        10.0,
+                        6.0,
+                        0.0
+                    ],
+                    [
+                        0.0,
+                        6.0,
+                        0.0
+                    ]
+                ]
+            ],
+        }
+    },
+    "height": {
+        "type": "Property",
+        "value": 10
+    },
+    "@context": "Nothing for now"
+}
