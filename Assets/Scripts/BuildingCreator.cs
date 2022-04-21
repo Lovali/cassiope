@@ -191,7 +191,13 @@ public class BuildingCreator : MonoBehaviour
     public void CreatingFloor(double[][] coordinates, int height, int numberOfRooms)
     {
         Debug.Log("In creating floor method");
-        for(int i=1; i<numberOfRooms+1; i++)
+        float width = Mathf.Abs((float)coordinates[1][0] - (float)coordinates[0][0]) / 10;
+        float l = Mathf.Abs((float)coordinates[0][1] - (float)coordinates[2][1]) / 10;
+        float x = ((float)coordinates[1][0] - (float)coordinates[0][0]) / 2;
+        float z = ((float)coordinates[0][1] + (float)coordinates[2][1]) / 2;
+        GameObject floor1 = Instantiate(floor, new Vector3(x, 0, z), Quaternion.identity);
+        floor1.transform.localScale = new Vector3(width, 0.1f, l);
+        for (int i=1; i<numberOfRooms+1; i++)
         {
             String name = "Room" + i + ".json";
             Room room = RoomParser(name);
