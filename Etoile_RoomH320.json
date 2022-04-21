@@ -16,23 +16,23 @@
     "doorsInRoom": {
         "type": "Relationship",
         "object": [
-        "Etoile:Door1"
+        "Etoile:RoomH320:Door1"
          ]
     },
     "windowsInRoom": {
         "type": "Relationship",
         "object": [
-        "Etoile:Window1",
-        "Etoile:Window2",
-        "Etoile:Window3",
-        "Etoile:Window4",
-        "Etoile:Window5",
-        "Etoile:Window6",
-        "Etoile:Window7",
-        "Etoile:Window8",
-        "Etoile:Window9",
-        "Etoile:Window10",
-        "Etoile:Window11"
+        "Etoile:RoomH320:Window1",
+        "Etoile:RoomH320:Window2",
+        "Etoile:RoomH320:Window3",
+        "Etoile:RoomH320:Window4",
+        "Etoile:RoomH320:Window5",
+        "Etoile:RoomH320:Window6",
+        "Etoile:RoomH320:Window7",
+        "Etoile:RoomH320:Window8",
+        "Etoile:RoomH320:Window9",
+        "Etoile:RoomH320:Window10",
+        "Etoile:RoomH320:Window11"
          ]
     },
     "onFloor": {

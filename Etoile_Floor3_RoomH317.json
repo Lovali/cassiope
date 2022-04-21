@@ -1,9 +1,9 @@
 {
-    "id": "Etoile:RoomH320",
+    "id": "Etoile:RoomH317",
     "type": "Room",
     "name": {
         "type": "Property",
-        "value": "Third floor room H320"
+        "value": "Third floor room H317"
     },
     "numbersOfDoors": {
         "type": "Property",
@@ -11,12 +11,12 @@
     },
     "numberOfWindows": {
         "type": "Property",
-        "value": 11
+        "value": 2
     },
     "doorsInRoom": {
         "type": "Relationship",
         "object": [
-        "Etoile:Door1"
+        "Etoile:RoomH317:Door1"
          ]
     },
     "windowsInRoom": {
