@@ -5,6 +5,7 @@ public class Room {
     private int numberofWindows;
     private double[][] coordinates;
     private int height;
+    private string name;
 
     public Room(int numberOfDoors, int numberofWindows, double[][] coordinates, int height) {
         this.numberOfDoors = numberOfDoors;
@@ -29,6 +30,10 @@ public class Room {
     {
         return height;
     }
+    public string getName()
+    {
+        return name;
+    }
 
     public void setNumberOfDoors(int numberOfDoors) {
         this.numberOfDoors = numberOfDoors;
@@ -40,5 +45,10 @@ public class Room {
 
     public void setCoordinates(double[][] coordinates) {
         this.coordinates = coordinates;
+    }
+
+    public void setName(string newName)
+    {
+        this.name = newName;
     }
 }
