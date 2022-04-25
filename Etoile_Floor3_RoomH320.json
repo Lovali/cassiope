@@ -1,39 +1,43 @@
 {
-    "id": "Etoile:Floor3",
-    "type": "Floor",
+    "id": "Etoile:RoomH320",
+    "type": "Room",
     "name": {
         "type": "Property",
-        "value": "Third floor"
+        "value": "Third floor room H320"
     },
-    "numberOfRooms": {
+    "numbersOfDoors": {
         "type": "Property",
-        "value": 17
+        "value": 1
     },
-    "roomsOnFloor": {
+    "numberOfWindows": {
+        "type": "Property",
+        "value": 11
+    },
+    "doorsInRoom": {
         "type": "Relationship",
         "object": [
-            "Etoile:RoomH320",
-            "Etoile:RoomH317",
-            "Etoile:RoomH316",
-            "Etoile:RoomH315",
-            "Etoile:RoomH314",
-            "Etoile:RoomH313",
-            "Etoile:RoomH312",
-            "Etoile:RoomH311",
-            "Etoile:RoomH310",
-            "Etoile:RoomH327",
-            "Etoile:RoomH300",
-            "Etoile:RoomH326",
-            "Etoile:RoomH325",
-            "Etoile:RoomH324",
-            "Etoile:RoomASC",
-            "Etoile:RoomH323",
-            "Etoile:RoomH301"
-        ]
+        "Etoile:RoomH320:Door1"
+         ]
     },
-    "withinBuilding": {
+    "windowsInRoom": {
         "type": "Relationship",
-        "object": "Etoile:etoile"
+        "object": [
+        "Etoile:RoomH320:Window1",
+        "Etoile:RoomH320:Window2",
+        "Etoile:RoomH320:Window3",
+        "Etoile:RoomH320:Window4",
+        "Etoile:RoomH320:Window5",
+        "Etoile:RoomH320:Window6",
+        "Etoile:RoomH320:Window7",
+        "Etoile:RoomH320:Window8",
+        "Etoile:RoomH320:Window9",
+        "Etoile:RoomH320:Window10",
+        "Etoile:RoomH320:Window11"
+         ]
+    },
+    "onFloor": {
+        "type": "Relationship",
+        "object": "Etoile:Floor3"
     },
     "location": {
         "type": "Geoproperty",
@@ -47,12 +51,12 @@
                         0.0
                     ],
                     [
-                        56.0,
+                        9.0,
                         0.0,
                         0.0
                     ],
                     [
-                        56.0,
+                        9.0,
                         9.0,
                         0.0
                     ],
@@ -68,6 +72,6 @@
     "height": {
         "type": "Property",
         "value": 4
-    },
+    }, 
     "@context": "Nothing for now"
 }

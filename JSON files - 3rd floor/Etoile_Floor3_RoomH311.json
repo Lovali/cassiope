@@ -1,0 +1,61 @@
+{
+    "id": "Etoile:RoomH311",
+    "type": "Room",
+    "name": {
+        "type": "Property",
+        "value": "Third floor room H311"
+    },
+    "numbersOfDoors": {
+        "type": "Property",
+        "value": 1
+    },
+    "numberOfWindows": {
+        "type": "Property",
+        "value": 0
+    },
+    "doorsInRoom": {
+        "type": "Relationship",
+        "object": [
+        "Etoile:RoomH311:Door1"
+         ]
+    },
+    "onFloor": {
+        "type": "Relationship",
+        "object": "Etoile:Floor3"
+    },
+    "location": {
+        "type": "Geoproperty",
+        "value": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [
+                        36.6,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        38.2,
+                        0.0,
+                        0.0
+                    ],
+                    [
+                        38.2,
+                        3.4,
+                        0.0
+                    ],
+                    [
+                        36.6,
+                        3.4,
+                        0.0
+                    ]
+                ]
+            ]
+        }
+    },
+    "height": {
+        "type": "Property",
+        "value": 4
+    }, 
+    "@context": "Nothing for now"
+}

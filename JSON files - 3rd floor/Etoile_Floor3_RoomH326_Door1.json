@@ -1,0 +1,29 @@
+{
+    "id": "Etoile:RoomH326:Door1",
+    "type": "Door",
+    "location": {
+        "type":"Geoproperty",
+        "value": {
+            "type":"Linestring",
+            "coordinates": [
+                [
+                    [
+                        39.3,
+                        5.0,
+                        0.0
+                    ],
+                    [
+                        40.3,
+                        5.0,
+                        0.0
+                    ]
+                ]
+            ]
+        }
+    },
+    "height": {
+        "type": "Property",
+        "value": 2
+    },
+    "@context": "Nothing for now"
+}

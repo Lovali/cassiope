@@ -1,0 +1,29 @@
+{
+    "id": "Etoile:RoomH310:Window3",
+    "type": "Window",
+    "location": {
+        "type": "Geoproperty",
+        "value": {
+            "type": "Linestring",
+            "coordinates": [
+                [
+                    [
+                        43.0,
+                        0.0,
+                        0.5
+                    ],
+                    [
+                        44.0,
+                        0.0,
+                        0.5
+                    ]
+                ]
+            ]
+        }
+    },
+    "height": {
+        "type": "Property",
+        "value": 1.5
+    },
+    "@context": "Nothing for now"
+}

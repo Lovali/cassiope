@@ -15,14 +15,84 @@ public class BuildingCreator : MonoBehaviour
 
     private void Start()
     {
-        Building building = BuildingParser();
+        /*Building building = BuildingParser();
         int n = building.getnbFloorsAboveGround();
         for(int i=1; i<n+1; i++)
         {
             String name = "Floor" + i + ".json";
             Floor floor = FloorParser(name);
             CreatingFloor(floor.getCoordinates(), floor.getHeight(), floor.getNumberOfRooms());
-        }
+        }*/
+        Floor floor = FloorParser("Etoile_Floor3.json");
+        CreatingFloor(floor.getCoordinates(), floor.getHeight(), floor.getNumberOfRooms());
+        Room room1 = RoomParser("Etoile_Floor3_RoomASC.json");
+        CreatingRoom(room1.getCoordinates(), room1.getHeight(), room1.getNumberOfDoors(), room1.getNumberOfWindows());
+        Room room2 = RoomParser("Etoile_Floor3_RoomH300.json");
+        CreatingRoom(room2.getCoordinates(), room2.getHeight(), room2.getNumberOfDoors(), room2.getNumberOfWindows());
+        Room room3 = RoomParser("Etoile_Floor3_RoomH301.json");
+        CreatingRoom(room3.getCoordinates(), room3.getHeight(), room3.getNumberOfDoors(), room3.getNumberOfWindows());
+        Room room4 = RoomParser("Etoile_Floor3_RoomH310.json");
+        CreatingRoom(room4.getCoordinates(), room4.getHeight(), room4.getNumberOfDoors(), room4.getNumberOfWindows());
+        Room room5 = RoomParser("Etoile_Floor3_RoomH311.json");
+        CreatingRoom(room5.getCoordinates(), room5.getHeight(), room5.getNumberOfDoors(), room5.getNumberOfWindows());
+        Room room6 = RoomParser("Etoile_Floor3_RoomH312.json");
+        CreatingRoom(room6.getCoordinates(), room6.getHeight(), room6.getNumberOfDoors(), room6.getNumberOfWindows());
+        Room room7 = RoomParser("Etoile_Floor3_RoomH313.json");
+        CreatingRoom(room7.getCoordinates(), room7.getHeight(), room7.getNumberOfDoors(), room7.getNumberOfWindows());
+        Room room8 = RoomParser("Etoile_Floor3_RoomH314.json");
+        CreatingRoom(room8.getCoordinates(), room8.getHeight(), room8.getNumberOfDoors(), room8.getNumberOfWindows());
+        Room room9 = RoomParser("Etoile_Floor3_RoomH315.json");
+        CreatingRoom(room9.getCoordinates(), room9.getHeight(), room9.getNumberOfDoors(), room9.getNumberOfWindows());
+        Room room10 = RoomParser("Etoile_Floor3_RoomH316.json");
+        CreatingRoom(room10.getCoordinates(), room10.getHeight(), room10.getNumberOfDoors(), room10.getNumberOfWindows());
+        Room room11 = RoomParser("Etoile_Floor3_RoomH317.json");
+        CreatingRoom(room11.getCoordinates(), room11.getHeight(), room11.getNumberOfDoors(), room11.getNumberOfWindows());
+        Room room12 = RoomParser("Etoile_Floor3_RoomH320.json");
+        CreatingRoom(room12.getCoordinates(), room12.getHeight(), room12.getNumberOfDoors(), room12.getNumberOfWindows());
+        Room room13 = RoomParser("Etoile_Floor3_RoomH323.json");
+        CreatingRoom(room13.getCoordinates(), room13.getHeight(), room13.getNumberOfDoors(), room13.getNumberOfWindows());
+        Room room14 = RoomParser("Etoile_Floor3_RoomH324.json");
+        CreatingRoom(room14.getCoordinates(), room14.getHeight(), room14.getNumberOfDoors(), room14.getNumberOfWindows());
+        Room room15 = RoomParser("Etoile_Floor3_RoomH325.json");
+        CreatingRoom(room15.getCoordinates(), room15.getHeight(), room15.getNumberOfDoors(), room15.getNumberOfWindows());
+        Room room16 = RoomParser("Etoile_Floor3_RoomH326.json");
+        CreatingRoom(room16.getCoordinates(), room16.getHeight(), room16.getNumberOfDoors(), room16.getNumberOfWindows());
+        Room room17 = RoomParser("Etoile_Floor3_RoomH327.json");
+        CreatingRoom(room17.getCoordinates(), room17.getHeight(), room17.getNumberOfDoors(), room17.getNumberOfWindows());
+        Door door1 = DoorParser("Etoile_Floor3_RoomH300_Door1.json");
+        CreatingDoor(door1.getCoordinates(), door1.getHeight());
+        Door door2 = DoorParser("Etoile_Floor3_RoomH301_Door1.json");
+        CreatingDoor(door2.getCoordinates(), door2.getHeight());
+        Door door3 = DoorParser("Etoile_Floor3_RoomH310_Door1.json");
+        CreatingDoor(door3.getCoordinates(), door3.getHeight());
+        Door door4 = DoorParser("Etoile_Floor3_RoomH311_Door1.json");
+        CreatingDoor(door4.getCoordinates(), door4.getHeight());
+        Door door5 = DoorParser("Etoile_Floor3_RoomH312_Door1.json");
+        CreatingDoor(door5.getCoordinates(), door5.getHeight());
+        Door door6 = DoorParser("Etoile_Floor3_RoomH313_Door1.json");
+        CreatingDoor(door6.getCoordinates(), door6.getHeight());
+        Door door7 = DoorParser("Etoile_Floor3_RoomH314_Door1.json");
+        CreatingDoor(door7.getCoordinates(), door7.getHeight());
+        Door door8 = DoorParser("Etoile_Floor3_RoomH315_Door1.json");
+        CreatingDoor(door8.getCoordinates(), door8.getHeight());
+        Door door9 = DoorParser("Etoile_Floor3_RoomH316_Door1.json");
+        CreatingDoor(door9.getCoordinates(), door9.getHeight());
+        Door door10 = DoorParser("Etoile_Floor3_RoomH317_Door1.json");
+        CreatingDoor(door10.getCoordinates(), door10.getHeight());
+        Door door11 = DoorParser("Etoile_Floor3_RoomH320_Door1.json");
+        CreatingDoor(door11.getCoordinates(), door11.getHeight());
+        Door door12 = DoorParser("Etoile_Floor3_RoomH323_Door1.json");
+        CreatingDoor(door12.getCoordinates(), door12.getHeight());
+        Door door13 = DoorParser("Etoile_Floor3_RoomH324_Door1.json");
+        CreatingDoor(door13.getCoordinates(), door13.getHeight());
+        Door door14 = DoorParser("Etoile_Floor3_RoomH325_Door1.json");
+        CreatingDoor(door14.getCoordinates(), door14.getHeight());
+        Door door15 = DoorParser("Etoile_Floor3_RoomH326_Door1.json");
+        CreatingDoor(door15.getCoordinates(), door15.getHeight());
+        Door door16 = DoorParser("Etoile_Floor3_RoomH327_Door1.json");
+        CreatingDoor(door16.getCoordinates(), door16.getHeight());
+        Door door17 = DoorParser("Etoile_Floor3_RoomH327_Door2.json");
+        CreatingDoor(door17.getCoordinates(), door17.getHeight());
 
     }
 
@@ -197,12 +267,12 @@ public class BuildingCreator : MonoBehaviour
         float z = ((float)coordinates[0][1] + (float)coordinates[2][1]) / 2;
         GameObject floor1 = Instantiate(floor, new Vector3(x, 0, z), Quaternion.identity);
         floor1.transform.localScale = new Vector3(width, 0.1f, l);
-        for (int i=1; i<numberOfRooms+1; i++)
+        /* for (int i=1; i<numberOfRooms+1; i++)
         {
             String name = "Room" + i + ".json";
             Room room = RoomParser(name);
             CreatingRoom(room.getCoordinates(), room.getHeight(), room.getNumberOfDoors(), room.getNumberOfWindows());
-        }
+        } */
     }
 
     public void CreatingRoom(double[][] coordinates, int height, int nbDoors, int nbWindows)
@@ -254,7 +324,7 @@ public class BuildingCreator : MonoBehaviour
         wall4.transform.Rotate(new Vector3(0, 90, 0));
 
 
-        for(int i=1; i<nbDoors+1; i++)
+        /*for(int i=1; i<nbDoors+1; i++)
         {
             String name = "Door" + i + ".json";
             Door door = DoorParser(name);
@@ -266,7 +336,7 @@ public class BuildingCreator : MonoBehaviour
             String name = "Window" + i + ".json";
             Window window = WindowParser(name);
             CreatingWindow(window.getCoordinates(), window.getHeight());
-        }
+        }*/
 
     }
 
@@ -276,7 +346,7 @@ public class BuildingCreator : MonoBehaviour
         if (coordinates[0][1] == coordinates[1][1])
         {
             float width1 = Mathf.Abs((float)coordinates[1][0] - (float)coordinates[0][0]);
-            float x1 = (float)coordinates[0][0] + (width1 / 2);
+            float x1 = Mathf.Min((float)coordinates[0][0],(float)coordinates[1][0]) + (width1 / 2);
             float z1 = ((float)coordinates[0][1] + (float)coordinates[1][1]) / 2;
             GameObject door1 = Instantiate(door, new Vector3(x1, heightDoor, z1), Quaternion.identity);
             door1.transform.localScale = new Vector3(width1, (float)height, 0.2f);
@@ -284,7 +354,7 @@ public class BuildingCreator : MonoBehaviour
         {
             float width2 = Mathf.Abs((float)coordinates[1][1] - (float)coordinates[0][1]);
             float x2 = ((float)coordinates[0][0] + (float)coordinates[1][0]) / 2;
-            float z2 = (float)coordinates[1][1] - (((float)coordinates[1][1] - (float)coordinates[0][1]) / 2);
+            float z2 = Mathf.Max((float)coordinates[1][1],(float)coordinates[0][1]) - (Mathf.Abs((float)coordinates[1][1] - (float)coordinates[0][1]) / 2);
             GameObject wall3 = Instantiate(door, new Vector3(x2, heightDoor, z2), Quaternion.identity);
             wall3.transform.localScale = new Vector3(width2, (float)height, 0.2f);
             wall3.transform.Rotate(new Vector3(0, 90, 0));
