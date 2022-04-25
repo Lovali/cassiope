@@ -297,14 +297,18 @@ public class BuildingCreator : MonoBehaviour
             string str = objRoomsOnFloor[i];
             int str_length = str.Length;
             Debug.Log("length of the name string : " + str_length);
-            if(str_length == 14)
-            {
-                Debug.Log("plop");
-            }
             string temp = str.Substring(str_length - 8);
             Debug.Log("temporary string : " + temp);
             string name = "Etoile_Floor3_" + temp + ".json";
             Debug.Log("name string : " + name);
+            if (str_length == 14)
+            {
+                Debug.Log("plop");
+                temp = str.Substring(str_length - 7);
+                Debug.Log("temporary string : " + temp);
+                name = "Etoile_Floor3_" + temp + ".json";
+                Debug.Log("name string : " + name);
+            }
             Room room = RoomParser(name);
             CreatingRoom(room.getCoordinates(), room.getHeight(), room.getNumberOfDoors(), room.getNumberOfWindows());
         }
