@@ -21,11 +21,11 @@ public class BuildingCreator : MonoBehaviour
         {
             String name = "Floor" + i + ".json";
             Floor floor = FloorParser(name);
-            CreatingFloor(floor.getCoordinates(), floor.getHeight(), floor.getNumberOfRooms());
+            CreatingFloor(floor.getCoordinates(), floor.getRoomsOnFloor(),floor.getHeight(), floor.getNumberOfRooms());
         }*/
         Floor floor = FloorParser("Etoile_Floor3.json");
-        CreatingFloor(floor.getCoordinates(), floor.getHeight(), floor.getNumberOfRooms());
-        Room room1 = RoomParser("Etoile_Floor3_RoomASC.json");
+        CreatingFloor(floor.getCoordinates(), floor.getRoomsOnFloor(), floor.getHeight(), floor.getNumberOfRooms());
+        /*Room room1 = RoomParser("Etoile_Floor3_RoomASC.json");
         CreatingRoom(room1.getCoordinates(), room1.getHeight(), room1.getNumberOfDoors(), room1.getNumberOfWindows());
         Room room2 = RoomParser("Etoile_Floor3_RoomH300.json");
         CreatingRoom(room2.getCoordinates(), room2.getHeight(), room2.getNumberOfDoors(), room2.getNumberOfWindows());
@@ -114,13 +114,14 @@ public class BuildingCreator : MonoBehaviour
         Window window10 = WindowParser("Etoile_Floor3_RoomH320_Window10.json");
         CreatingWindow(window10.getCoordinates(), window10.getHeight());
         Window window11 = WindowParser("Etoile_Floor3_RoomH320_Window11.json");
-        CreatingWindow(window11.getCoordinates(), window11.getHeight());
+        CreatingWindow(window11.getCoordinates(), window11.getHeight());*/
 
     }
 
 
+
     //--------------------------------------------------------------- PARSERS --------------------------------------------------------------------------//
-    
+
     public Building BuildingParser()
     {
         var BuildingString = File.ReadAllText("Building.json");
@@ -282,7 +283,7 @@ public class BuildingCreator : MonoBehaviour
     //------------------------------------------------------------------ CREATORS ---------------------------------------------------------------------//
 
 
-    public void CreatingFloor(double[][] coordinates, int height, int numberOfRooms)
+    public void CreatingFloor(double[][] coordinates, string[] objRoomsOnFloor,int height, int numberOfRooms)
     {
         Debug.Log("In creating floor method");
         float width = Mathf.Abs((float)coordinates[1][0] - (float)coordinates[0][0]) / 10;
@@ -291,12 +292,22 @@ public class BuildingCreator : MonoBehaviour
         float z = ((float)coordinates[0][1] + (float)coordinates[2][1]) / 2;
         GameObject floor1 = Instantiate(floor, new Vector3(x, 0, z), Quaternion.identity);
         floor1.transform.localScale = new Vector3(width, 0.1f, l);
-        /* for (int i=1; i<numberOfRooms+1; i++)
+        for (int i=0; i<numberOfRooms; i++)
         {
-            String name = "Room" + i + ".json";
+            string str = objRoomsOnFloor[i];
+            int str_length = str.Length;
+            Debug.Log("length of the name string : " + str_length);
+            if(str_length == 14)
+            {
+                Debug.Log("plop");
+            }
+            string temp = str.Substring(str_length - 8);
+            Debug.Log("temporary string : " + temp);
+            string name = "Etoile_Floor3_" + temp + ".json";
+            Debug.Log("name string : " + name);
             Room room = RoomParser(name);
             CreatingRoom(room.getCoordinates(), room.getHeight(), room.getNumberOfDoors(), room.getNumberOfWindows());
-        } */
+        }
     }
 
     public void CreatingRoom(double[][] coordinates, int height, int nbDoors, int nbWindows)
