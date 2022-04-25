@@ -93,6 +93,28 @@ public class BuildingCreator : MonoBehaviour
         CreatingDoor(door16.getCoordinates(), door16.getHeight());
         Door door17 = DoorParser("Etoile_Floor3_RoomH327_Door2.json");
         CreatingDoor(door17.getCoordinates(), door17.getHeight());
+        Window window1 = WindowParser("Etoile_Floor3_RoomH320_Window1.json");
+        CreatingWindow(window1.getCoordinates(), window1.getHeight());
+        Window window2 = WindowParser("Etoile_Floor3_RoomH320_Window2.json");
+        CreatingWindow(window2.getCoordinates(), window2.getHeight());
+        Window window3 = WindowParser("Etoile_Floor3_RoomH320_Window3.json");
+        CreatingWindow(window3.getCoordinates(), window3.getHeight());
+        Window window4 = WindowParser("Etoile_Floor3_RoomH320_Window4.json");
+        CreatingWindow(window4.getCoordinates(), window4.getHeight());
+        Window window5 = WindowParser("Etoile_Floor3_RoomH320_Window5.json");
+        CreatingWindow(window5.getCoordinates(), window5.getHeight());
+        Window window6 = WindowParser("Etoile_Floor3_RoomH320_Window6.json");
+        CreatingWindow(window6.getCoordinates(), window6.getHeight());
+        Window window7 = WindowParser("Etoile_Floor3_RoomH320_Window7.json");
+        CreatingWindow(window7.getCoordinates(), window7.getHeight());
+        Window window8 = WindowParser("Etoile_Floor3_RoomH320_Window8.json");
+        CreatingWindow(window8.getCoordinates(), window8.getHeight());
+        Window window9 = WindowParser("Etoile_Floor3_RoomH320_Window9.json");
+        CreatingWindow(window9.getCoordinates(), window9.getHeight());
+        Window window10 = WindowParser("Etoile_Floor3_RoomH320_Window10.json");
+        CreatingWindow(window10.getCoordinates(), window10.getHeight());
+        Window window11 = WindowParser("Etoile_Floor3_RoomH320_Window11.json");
+        CreatingWindow(window11.getCoordinates(), window11.getHeight());
 
     }
 
@@ -129,11 +151,12 @@ public class BuildingCreator : MonoBehaviour
         var heightObject = Floor.SelectToken("height").Value<JObject>();
         var height = heightObject.SelectToken("value").Value<int>();
         object[][] JArrayCoordinates = locationValue.SelectToken("coordinates").Value<JArray>().ToObject<object[][][]>();
-        double[][] coordinates = new double[4][];
+        double[][] coordinates = new double[5][];
         coordinates[0] = new double[3];
         coordinates[1] = new double[3];
         coordinates[2] = new double[3];
         coordinates[3] = new double[3];
+        coordinates[4] = new double[3];
         int i = 0;
         int j = 0;
         foreach (object[][] firstTab in JArrayCoordinates)
@@ -166,12 +189,13 @@ public class BuildingCreator : MonoBehaviour
         var heightObject = Room.SelectToken("height").Value<JObject>();
         int height = heightObject.SelectToken("value").Value<int>();
         object[][][] JArrayCoordinates = locationValue.SelectToken("coordinates").Value<JArray>().ToObject<object[][][]>();
-        double[][] coordinates = new double[4][];
+        double[][] coordinates = new double[5][];
         //setting the size of the tables inside coordinates (x,y,z for each)
         coordinates[0] = new double[3];
         coordinates[1] = new double[3];
         coordinates[2] = new double[3];
         coordinates[3] = new double[3];
+        coordinates[4] = new double[3];
         int i = 0;
         int j = 0;
         foreach (object[][] firstTab in JArrayCoordinates)
