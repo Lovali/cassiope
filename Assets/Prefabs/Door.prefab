@@ -12,6 +12,10 @@ GameObject:
   - component: {fileID: 3607346515087622043}
   - component: {fileID: 4345369818704063220}
   - component: {fileID: 123926237681850186}
+  - component: {fileID: 5806353963451374629}
+  - component: {fileID: 5657852430939521296}
+  - component: {fileID: 2511086174586653901}
+  - component: {fileID: 7506935368366084034}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -27,8 +31,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457596513137136941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.62, y: 3.44, z: 8.75}
-  m_LocalScale: {x: 0.2619615, y: 6.655618, z: 3.3803}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -93,3 +97,159 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5806353963451374629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457596513137136941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6071f500297a64496afaea9a966c91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStatic: 0
+  active: 1
+  UMI3DAnchor: {fileID: 0}
+  immersiveOnly: 0
+  VolumeId: 0
+  xBillboard: 0
+  yBillboard: 0
+  hasCollider: 1
+  colliderType: 3
+  convex: 0
+  colliderCenter: {x: 0, y: 0, z: 0}
+  colliderRadius: 1
+  colliderBoxSize: {x: 1, y: 1, z: 1}
+  colliderHeight: 1
+  colliderDirection: 1
+  isMeshCustom: 0
+  customMeshCollider:
+    variants: []
+  overrideModelMaterials: 0
+  materialsOverrider: []
+  castShadow: 1
+  receiveShadow: 1
+  lockColliders: 0
+  model:
+    variants:
+    - isLocalFile: 1
+      domain: 
+      path: public\com.inetum.etoilebuilding\default\Door.glb
+      format: gltf
+      extension: .glb
+      isInBundle: 0
+      pathIfInBundle: 
+      metrics:
+        resolution: 0
+        size: 0
+      isInLibrary: 1
+      libraryKey: {fileID: 11400000, guid: 5fa4aa530f7a4b14a8719aeca32062f0, type: 2}
+  idGenerator: '{{pid}}_[{{name}}]'
+  areSubobjectsTracked: 0
+  areSubobjectsAlreadyMarked: 0
+  isRightHanded: 1
+  isPartOfNavmesh: 0
+  isTraversable: 1
+--- !u!114 &5657852430939521296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457596513137136941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a302a3c7ed4cc44193691fe133af4e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Display:
+    name: Interactable door
+    description: 
+    icon2D:
+      variants: []
+    icon3D:
+      variants: []
+  Interactions:
+  - {fileID: 2511086174586653901}
+  Active: 1
+  onProjection:
+    m_PersistentCalls:
+      m_Calls: []
+  onRelease:
+    m_PersistentCalls:
+      m_Calls: []
+  NotifyHoverPosition: 0
+  NotifySubObject: 0
+  Node: {fileID: 5806353963451374629}
+  HasPriority: 0
+  onHoverEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onHovered:
+    m_PersistentCalls:
+      m_Calls: []
+  onHoverExit:
+    m_PersistentCalls:
+      m_Calls: []
+  UseAnimations: 0
+  HoverEnterAnimation: {fileID: 0}
+  HoverExitAnimation: {fileID: 0}
+  hoveringBones: []
+--- !u!114 &2511086174586653901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457596513137136941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97b38d5043969c46b75af5d8abce74d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsSubInteraction: 0
+  Display:
+    name: Open
+    description: 
+    icon2D:
+      variants: []
+    icon3D:
+      variants: []
+  TriggerAnimation: {fileID: 0}
+  ReleaseAnimation: {fileID: 0}
+  Hold: 0
+  onHold:
+    m_PersistentCalls:
+      m_Calls: []
+  onRelease:
+    m_PersistentCalls:
+      m_Calls: []
+  onTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7506935368366084034}
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7506935368366084034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457596513137136941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952951b75d963794bbec128295b6e895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 5806353963451374629}

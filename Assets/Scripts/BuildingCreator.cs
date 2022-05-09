@@ -290,6 +290,7 @@ public class BuildingCreator : MonoBehaviour
         float x = ((float)coordinates[1][0] - (float)coordinates[0][0]) / 2;
         float z = ((float)coordinates[0][1] + (float)coordinates[2][1]) / 2;
         GameObject floor1 = Instantiate(floor, new Vector3(x, 0, z), Quaternion.identity);
+        floor1.transform.parent = gameObject.transform;
         floor1.transform.localScale = new Vector3(width, 0.1f, l);
         /* for (int i=1; i<numberOfRooms+1; i++)
         {
@@ -311,6 +312,7 @@ public class BuildingCreator : MonoBehaviour
         float x1 = (float)coordinates[0][0] + (width1 / 2);
         float z1 = ((float)coordinates[0][1] + (float)coordinates[1][1]) / 2;
         GameObject wall1 = Instantiate(wall, new Vector3(x1,heightWall, z1), Quaternion.identity);
+        wall1.transform.parent = gameObject.transform;
         //Debug.Log("width1: " + width1);
         //Debug.Log("x1: " + x1);
         //Debug.Log("z1: " + z1);
@@ -320,6 +322,7 @@ public class BuildingCreator : MonoBehaviour
         float x2 = (float)coordinates[3][0] + (width2 / 2);
         float z2 = ((float)coordinates[2][1] + (float)coordinates[3][1]) / 2;
         GameObject wall2 = Instantiate(wall, new Vector3(x2, heightWall, z2), Quaternion.identity);
+        wall2.transform.parent = gameObject.transform;
         //Debug.Log("width2: " + width2);
         //Debug.Log("x2: " + x2);
         //Debug.Log("z2: " + z2);
@@ -329,6 +332,7 @@ public class BuildingCreator : MonoBehaviour
         float x3 = ((float)coordinates[1][0] + (float)coordinates[2][0]) / 2;
         float z3 = (float)coordinates[2][1] - (((float)coordinates[2][1] - (float)coordinates[1][1]) / 2);
         GameObject wall3 = Instantiate(wall, new Vector3(x3, heightWall, z3), Quaternion.identity);
+        wall3.transform.parent = gameObject.transform;
         //Debug.Log("width3: " + width3);
         //Debug.Log("x3: " + x3);
         //Debug.Log("z3: " + z3);
@@ -341,6 +345,7 @@ public class BuildingCreator : MonoBehaviour
         float x4 = ((float)coordinates[3][0] + (float)coordinates[0][0]) / 2;
         float z4 = (float)coordinates[3][1] - (((float)coordinates[3][1] - (float)coordinates[0][1]) / 2);
         GameObject wall4 = Instantiate(wall, new Vector3(x4, heightWall, z4), Quaternion.identity);
+        wall4.transform.parent = gameObject.transform;
         //Debug.Log("width4: " + width4);
         //Debug.Log("x4: " + x4);
         //Debug.Log("z4: " + z4);
@@ -371,34 +376,35 @@ public class BuildingCreator : MonoBehaviour
         {
             float width1 = Mathf.Abs((float)coordinates[1][0] - (float)coordinates[0][0]);
             float x1 = Mathf.Min((float)coordinates[0][0],(float)coordinates[1][0]) + (width1 / 2);
-            float z1 = ((float)coordinates[0][1] + (float)coordinates[1][1]) / 2;
-            GameObject door1 = Instantiate(door, new Vector3(x1, heightDoor, z1), Quaternion.identity);
+            GameObject door1 = Instantiate(door, new Vector3(x1, heightDoor, (float)coordinates[0][1]), Quaternion.identity);
+            door1.transform.parent = gameObject.transform;
             door1.transform.localScale = new Vector3(width1, (float)height, 0.2f);
         } else
         {
             float width2 = Mathf.Abs((float)coordinates[1][1] - (float)coordinates[0][1]);
-            float x2 = ((float)coordinates[0][0] + (float)coordinates[1][0]) / 2;
             float z2 = Mathf.Max((float)coordinates[1][1],(float)coordinates[0][1]) - (Mathf.Abs((float)coordinates[1][1] - (float)coordinates[0][1]) / 2);
-            GameObject wall3 = Instantiate(door, new Vector3(x2, heightDoor, z2), Quaternion.identity);
-            wall3.transform.localScale = new Vector3(width2, (float)height, 0.2f);
-            wall3.transform.Rotate(new Vector3(0, 90, 0));
+            GameObject door1 = Instantiate(door, new Vector3((float)coordinates[0][0], heightDoor, z2), Quaternion.identity);
+            door1.transform.parent = gameObject.transform;
+            door1.transform.localScale = new Vector3(width2, (float)height, 0.2f);
+            door1.transform.Rotate(new Vector3(0, 90, 0));
         }
     }
 
     public void CreatingWindow(double[][] coordinates, double height)
     {
         float widthX = Mathf.Abs((float)coordinates[0][0] - (float)coordinates[1][0]);
-        //si les deux coordonnes sont egales, ie leur difference vaut zéro, la fenetre est sur un mu orienté selon y
+        //si les deux coordonnes sont egales, ie leur difference vaut zéro, la fenetre est sur un mur orienté selon y
         if (widthX == 0)
         {
             float widthY = Mathf.Abs((float)coordinates[0][1] - (float)coordinates[1][1]);
-            float y = (float)coordinates[1][1] - (((float)coordinates[1][1] - (float)coordinates[0][1]) / 2);
+            float y = Mathf.Max((float)coordinates[1][1],(float)coordinates[0][1]) - (widthY / 2);
             float heightAboveGround = (float)coordinates[0][2] + ((float)height / 2);
             //Debug.Log("coord z: " + (float)coordinates[0][2]);
             //Debug.Log("height: " + height);
             //Debug.Log("height above ground: " + heightAboveGround);
             //Debug.Log("widthY: " + widthY);
-            GameObject window1 = Instantiate(window, new Vector3(0, heightAboveGround, y), Quaternion.identity);
+            GameObject window1 = Instantiate(window, new Vector3((float)coordinates[0][0], heightAboveGround, y), Quaternion.identity);
+            window1.transform.parent = gameObject.transform;
             window1.transform.localScale = new Vector3(widthY, (float)height, 0.2f);
             window1.transform.Rotate(new Vector3(0, 90, 0));
 
@@ -406,9 +412,10 @@ public class BuildingCreator : MonoBehaviour
 
         else
         {
-            float x = (float)coordinates[1][0] - (((float)coordinates[1][0] - (float)coordinates[0][0]) / 2);
+            float x = Mathf.Max((float)coordinates[1][0],(float)coordinates[0][0]) - (widthX / 2);
             float heightAboveGround = (float)coordinates[0][2] + ((float)height / 2);
-            GameObject window1 = Instantiate(window, new Vector3(x, heightAboveGround, 0), Quaternion.identity);
+            GameObject window1 = Instantiate(window, new Vector3(x, heightAboveGround, (float)coordinates[0][1]), Quaternion.identity);
+            window1.transform.parent = gameObject.transform;
             window1.transform.localScale = new Vector3(widthX, (float)height, 0.2f);
 
         }
