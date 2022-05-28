@@ -11,7 +11,7 @@ public class BuildingCreator : MonoBehaviour
     [SerializeField] GameObject floor;
     [SerializeField] GameObject door;
     [SerializeField] GameObject window;
-
+    [SerializeField] GameObject IOT;
 
     private void Start()
     {
@@ -25,6 +25,8 @@ public class BuildingCreator : MonoBehaviour
         }*/
         Floor floor = FloorParser("Etoile_Floor3.json");
         CreatingFloor(floor.getCoordinates(), floor.getRoomsOnFloor(), floor.getHeight(), floor.getNumberOfRooms());
+        IOT iot = IOTParser("Etoile_Floor3_IOT1.json");
+        CreatingIOT(iot.getCoordinates(), iot.getHeight());
 
     }
 
@@ -189,6 +191,29 @@ public class BuildingCreator : MonoBehaviour
         return window;
     }
 
+    public IOT IOTParser(String nom_fichier)
+    {
+        var IOTString = File.ReadAllText(nom_fichier);
+        var IOT = JObject.Parse(IOTString);
+        var location = IOT.SelectToken("location").Value<JObject>();
+        var locationValue = location.SelectToken("value").Value<JObject>();
+        var heightObject = IOT.SelectToken("height").Value<JObject>();
+        double height = heightObject.SelectToken("value").Value<double>();
+        object[][] JArrayCoordinates = locationValue.SelectToken("coordinates").Value<JArray>().ToObject<object[][]>();
+        double[] coordinates = new double[3];
+        int j = 0;
+            foreach (object[] secondTab in JArrayCoordinates)
+            {
+                foreach (object x in secondTab)
+                {
+                    coordinates[j] = Convert.ToDouble(x);
+                    j++;
+                }
+            }
+        IOT IoT = new IOT(coordinates, height);
+        return IoT;
+    }
+
 
     //------------------------------------------------------------------ CREATORS ---------------------------------------------------------------------//
 
@@ -348,5 +373,12 @@ public class BuildingCreator : MonoBehaviour
             window1.transform.localScale = new Vector3(widthX, (float)height, 0.2f);
 
         }
+    }
+
+    public void CreatingIOT(double[] coordinates, double height)
+    {
+        GameObject iot = Instantiate(IOT, new Vector3((float)coordinates[0], (float)coordinates[2], (float)coordinates[1]), Quaternion.identity);
+        iot.transform.parent = gameObject.transform;
+        //iot.transform.localScale = new Vector3(1, (float)height, 0.5f);
     }
 }

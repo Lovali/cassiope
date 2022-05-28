@@ -1,0 +1,22 @@
+{
+    "id": "id_building:iot1",
+    "type": "IoT",
+    "location": {
+        "type":"Geoproperty",
+        "value": {
+            "type":"Linestring",
+            "coordinates": [
+                    [
+                        48.0,
+                        8.0,
+                        0.5
+                    ]
+                ]
+        }
+    },
+    "height": {
+        "type": "Property",
+        "value": 0.5
+    },
+    "@context": "Nothing for now"
+}
