@@ -379,6 +379,6 @@ public class BuildingCreator : MonoBehaviour
     {
         GameObject iot = Instantiate(IOT, new Vector3((float)coordinates[0], (float)coordinates[2], (float)coordinates[1]), Quaternion.identity);
         iot.transform.parent = gameObject.transform;
-        //iot.transform.localScale = new Vector3(1, (float)height, 0.5f);
+        iot.transform.localScale = new Vector3((float)height, (float)height, (float)height);
     }
 }
