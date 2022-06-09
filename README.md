@@ -9,6 +9,7 @@ It generates 3D buildings, which plans are kept in a database in JSON format.
 
 * Database: NGSI-LD, an Orion-LD specification made for building representation (https://tech-wiki.notion.site/NGSI-LD-Guide-ad6a9c4bb9e6426db9595c065bcf7c83)
 * Application: Unity (https://unity.com)
+* JSON lecture on Unity: Newtonsoft
 * Multi-platform tool: UMI3D (https://umi3d-consortium.org/)
 
 ## Demonstration 
@@ -29,7 +30,7 @@ If you want to launch Orion-LD from a terminal, please use go to the file that c
 Once the server is launched, you can start **creating entities**.  
 To see the format of Buildings, Floors, Rooms, Windows and Doors, please check:  
 https://github.com/Free-Hugs/Local-Server  
-It is important to have a good id for the different entities. We highly recommand you to use the followings:  
+It is important to have a good id for the different entities. We highly recommend you to use the followings:  
 * **Building** : ```building:[building_name]```
 * **Floor** : ```[building_name]:Floor[floor_number]```
 * **Room** : ```[building_name]:[room_name]```
@@ -40,7 +41,8 @@ These ids will be used to get the components for 3D Buildings. The parsers are m
 **To add an entity in the database**, you can use a curl command in your terminal (no need to cd into the file containing your docker-compose.yml).  
 ```curl [server-adress]:[port]/ngsi-ld/v1/entities -s -S -H 'Content-Type: application/ld+json' -d @- <<EOF```  
 Once you typed this, type the data you want to add.  
-Then, finish your data with ```EOF```.
+Then, finish your data with ```EOF```.  
+Note: as we generate 3D models, we need to add a height in rooms' and floors' descriptions. You will find the right format for this on https://github.com/Free-Hugs/Local-Server.  
 
 **To read an entity from your database**
 ```curl [server-adress]:[port]/ngsi-ld/v1/entities/[entity]%3A[URI]%3A[here] -s -S -H 'Accept: application/ld+json'```  
@@ -51,3 +53,30 @@ Then, finish your data with ```EOF```.
 ```curl [server-adress]:[port]/ngsi-ld/v1/entities/[entity]%3A[URI]%3A[here] -s -S -H 'Content-Type: application/json' -H 'Link: https://pastebin.com/raw/Mgxv2ykn' -d @- <<EOF```  
 Put ```{}``` first, then write down the datas you want to update. 
 Same as entity addition: please add ```EOF``` at the end of your update.
+
+### Usage of API
+
+**To use the API requests** described previously, you need to use:
+```StartCoroutine(myFunction())```
+
+The function used in the coroutine must be of type **IEnumerator**. This means that you need a yield return of the WWW object before any operation.  
+There are two cases:  
+* if the connection succeeds, do your operations
+* if not, print something to be aware of it
+Note that *Unity can show a warning as WWW is obsolete*. With the Unity version adapted to UMI3D (2019.4.20f1 when this app was created), you do not have to care about it.
+
+### Unity Parsers
+
+To use the data in Unity, you need to parse them from JSON format to C# format.  
+To generate 3D models, we need **coordinates** of rooms, doors and windows, and the **height** value of each room.  
+Those operations are made in **Assets/Script/BuildingCreator.cs**.  
+To use it, add it in as a component of an Empty GameObject.
+
+**Add the prefabs** of Walls, Floors, Doors and Windows.  
+Then, add the **IP Address of the NGSI-LD Server**. Keep the building string empty (you can remove it, it just confirms that the API request takes the right building).  
+
+At the start of the Unity Scene, the Player will spawn in an empty dark room, with a menu in front of him.  
+Available buildings are displayed thanks to the API request:  
+```http://" + ipAddress + ":[port_number]/ngsi-ld/v1/entities/?type=[type_linked_to_buildings]```  
+The ```type_linked_to_buildings``` is in the context of the entity created. In our script, it corresponds to ```urn:mytypes:building```.  
+Then, the user can click on the start button, which hides the dark rooms and spawns the selected building.  
