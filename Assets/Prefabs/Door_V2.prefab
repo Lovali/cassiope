@@ -71,14 +71,14 @@ MonoBehaviour:
     variants:
     - isLocalFile: 1
       domain: 
-      path: public\com.inetum.etoilebuilding\default\Door.glb
+      path: public\com.inetum.etoilebuilding\default\Door_V2.glb
       format: gltf
       extension: .glb
       isInBundle: 0
       pathIfInBundle: 
       metrics:
         resolution: 0
-        size: 158.708
+        size: 158.748
       isInLibrary: 1
       libraryKey: {fileID: 11400000, guid: 5fa4aa530f7a4b14a8719aeca32062f0, type: 2}
   idGenerator: '{{pid}}_[{{name}}]'
