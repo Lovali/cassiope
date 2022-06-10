@@ -35,9 +35,13 @@ It is important to have a good id for the different entities. We highly recommen
 * **Building** : ```building:[building_name]```
 * **Floor** : ```[building_name]:Floor[floor_number]```
 * **Room** : ```[building_name]:[room_name]```
-* **Window** : ```[building_name]:[room_name]:[window_name]```
-* **Door** : ```[building_name]:[room_name]:[window_name]```
+* **Window** : ```[building_name]:[room_name]:Window[window_number]```
+* **Door** : ```[building_name]:[room_name]:Door[door_number]```
 These ids will be used to get the components for 3D Buildings. The parsers are made for these formats of ids.
+
+There are **two geometrical types** of entities:  
+* **Polygons**: they contain **5 points in their coordinates** (if they have the shape of a square or rectangle). It concerns **Floors** and **Rooms**.  
+* **LineString** : they contain **2 points in their coordinates**. It concerns **Doors** and **Windows**.  
 
 **To add an entity in the database**, you can use a curl command in your terminal (no need to cd into the file containing your docker-compose.yml).  
 ```curl [server-adress]:[port]/ngsi-ld/v1/entities -s -S -H 'Content-Type: application/ld+json' -d @- <<EOF```  
@@ -52,8 +56,10 @@ Note: as we generate 3D models, we need to add a height in rooms' and floors' de
 **To update an entity in your database**
 
 ```curl [server-adress]:[port]/ngsi-ld/v1/entities/[entity]%3A[URI]%3A[here] -s -S -H 'Content-Type: application/json' -H 'Link: https://pastebin.com/raw/Mgxv2ykn' -d @- <<EOF```  
-Put ```{}``` first, then write down the datas you want to update. 
-Same as entity addition: please add ```EOF``` at the end of your update.
+Put ```{}``` first, then write down the data you want to update. 
+Same as entity addition: please add ```EOF``` at the end of your update.  
+
+**Important note**: when you input the coordinates of a floor/room/door/window, please enter the coordinates of the corners of the entity **on the ground** and not on the ceil.  
 
 ### Usage of API
 
@@ -66,11 +72,40 @@ There are two cases:
 * if not, print something to be aware of it
 Note that *Unity can show a warning as WWW is obsolete*. With the Unity version adapted to UMI3D (2019.4.20f1 when this app was created), you do not have to care about it.
 
+### Some Object classes
+
+Before using the Parsers, we need to create some classes to save the values.  
+There are **5 classes**:  
+
+1. **Assets/Scripts/Building.cs**  
+Building only needs to contain the **number of floors contained** called ```nbFloorsAboveGround```.  
+
+2. **Assets/Scripts/Floor.cs**  
+* ```numberOfRooms``` contains the **number of Rooms (int)**  
+* ```roomsOnFloor``` contains an **array of rooms' ids contained in the floor (string[])**  
+* ```coordinates``` contains the **coordinates of the floor (double[][])**  
+* ```height``` contains the **height of the floor (int)**  
+
+3. **Assets/Scripts/Room.cs**  
+* ```numberOfDoors``` contains the **number of Doors in the room (int)**  
+* ```numberofWindows``` contains the **number of Windows in the room (int)**  
+* ```coordinates``` contains the **coordinates of the room (double[][])**  
+* ```height``` contains the **height of the room (int)**  
+* ```name``` contains the **id of the room (string)**  
+
+4. **Assets/Scripts/Door.cs**  
+* ```coordinates``` contains the **coordinates of the door (double[][])**  
+* ```height``` contains the **height of the door (int)**  
+
+5. **Assets/Scripts/Window.cs**  
+* ```coordinates``` contains the **coordinates of the window (double[][])**
+* ```height``` contains the **height of the window (int)**
+
 ### Unity Parsers
 
 To use the data in Unity, you need to parse them from JSON format to C# format.  
 To generate 3D models, we need **coordinates** of rooms, doors and windows, and the **height** value of each room.  
-Those operations are made in **Assets/Script/BuildingCreator.cs**.  
+Those operations are made in **Assets/Script/CreatorAPI.cs**.  
 To use it, add it in as a component of an Empty GameObject.
 
 **Add the prefabs** of Walls, Floors, Doors and Windows.  
@@ -87,13 +122,42 @@ The function ```SelectToken("token_name").Value<value_type>()``` provides the va
 * If you get an intermediate object, please use it as **var**.
 *Example*:  
 ```var nbOfRooms = Floor.SelectToken("numberOfRooms").Value<JObject>();``` gets  
-```"numbersOfDoors": {
-    "type": "Property",
-    "value": 1
-}```  
+```"numbersOfDoors": { "type": "Property", "value": 1 }```  
 * Then, when you want to get the value, please select the right object type.  
 *Example*:  
-```int numberOfRooms = nbOfRooms.SelectToken("value").Value<int>();``` gets the value ```1```.
+```int numberOfRooms = nbOfRooms.SelectToken("value").Value<int>();``` gets the value ```1```.  
 
+The Parser works in **few steps**:  
+1. **BuildingParser()**  
+To create an object of class ```Building```.  
+You only need to collect the number of floor it contains.  
 
+2. **getFloor(string floorName)**
+To create an object of class ```Floor``` and use the **CreatingFloor(args)** to generate the 3D model of the floor.  
+The code gets the JSON object with the following API request:  
+```"http://" + ipAddress + ":1026/ngsi-ld/v1/entities/" + building + ":"+ floorName```  
+The rest of the code gets the fields needed to create a ```Floor``` object.  
+An iteration in ```CreatingFloor(args)``` looks for the rooms in the floor and calls **getRoom(string roomName)**.  
 
+3. **getRoom(string roomName))**  
+To create an object of class ```Room``` and use the **CreatingRoom(args)** to generate the 3D model of the room.  
+The code gets the JSON object with the following API request:  
+```"http://" + ipAddress + ":1026/ngsi-ld/v1/entities/"+ roomName```  
+The rest of the code gets the fields needed to create a ```Room``` object.  
+An iteration in ```CreatingRoom(args)``` looks for the rooms in the floor and calls **getWindow(string windowName)** and **getDoor(string doorName)**.  
+
+4. **getWindow(string windowName)**  
+To create an object of class ```Window``` and use the **CreatingWindow(args)** to generate the 3D model of the window.  
+The code gets the JSON object with the following API request:  
+```"http://" + ipAddress + ":1026/ngsi-ld/v1/entities/"+ windowName```  
+
+5. **getDoor(string doorName)**  
+To create an object of class ```Door``` and use the **CreatingDoor(args)** to generate the 3D model of the door.  
+The code gets the JSON object with the following API request:  
+```"http://" + ipAddress + ":1026/ngsi-ld/v1/entities/"+ doorName```  
+
+Note : this structure allows us to get all needed information for 3D model creation using only the name of the building.  
+
+### Code of 3D Model Creators  
+
+### UMI3D Implementation
