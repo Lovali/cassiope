@@ -23,6 +23,7 @@ It generates 3D buildings, which plans are kept in a database in JSON format.
 Building's plans are saved in a docker server, with **NGSI-LD** specifications. It uses Mongo-DB as database system.  
 With the previous link in **Used Tools**, you will be able to install the Orion-LD server, to launch it, and to use it on your laptop.  
 The tutorial tells that Orion-LD can only be used under Linux. But you can launch it from Windows, with **WSL** or **Docker Desktop** (https://www.docker.com/products/docker-desktop/)  
+**Important Note** : when you will launch the server, it will automatically select the **port 1026**. You can change this specification in the .yml file.  
 If you want to launch Orion-LD from a terminal, please use go to the file that contains the ```docker-compose.yml``` and type: 
 
 ```sudo docker-compose up```
@@ -77,6 +78,22 @@ Then, add the **IP Address of the NGSI-LD Server**. Keep the building string emp
 
 At the start of the Unity Scene, the Player will spawn in an empty dark room, with a menu in front of him.  
 Available buildings are displayed thanks to the API request:  
-```http://" + ipAddress + ":[port_number]/ngsi-ld/v1/entities/?type=[type_linked_to_buildings]```  
-The ```type_linked_to_buildings``` is in the context of the entity created. In our script, it corresponds to ```urn:mytypes:building```.  
-Then, the user can click on the start button, which hides the dark rooms and spawns the selected building.  
+```http://" + ipAddress + ":[port_number]/ngsi-ld/v1/entities/?type=[type_of_buildings]```  
+The ```type_of_buildings``` is in the context of the entity created. In our script, it corresponds to ```urn:mytypes:building```.  
+Then, the user can click on the start button, which hides the dark room and spawns the selected building.  
+
+The JSON Parsing system uses **Newtonsoft**.  
+The function ```SelectToken("token_name").Value<value_type>()``` provides the value of the field *token_name* with the type *value_type*.  
+* If you get an intermediate object, please use it as **var**.
+*Example*:  
+```var nbOfRooms = Floor.SelectToken("numberOfRooms").Value<JObject>();``` gets  
+```"numbersOfDoors": {
+    "type": "Property",
+    "value": 1
+}```  
+* Then, when you want to get the value, please select the right object type.  
+*Example*:  
+```int numberOfRooms = nbOfRooms.SelectToken("value").Value<int>();``` gets the value ```1```.
+
+
+
