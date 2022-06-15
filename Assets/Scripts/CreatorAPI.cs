@@ -22,15 +22,20 @@ public class CreatorAPI : MonoBehaviour
     [SerializeField] GameObject door;
     [SerializeField] GameObject window;
     [SerializeField] GameObject IOT;
+    [SerializeField] GameObject blackRoom;
     [SerializeField] string ipAddress;
     [SerializeField] string building;
     public string jsonURL;
 
     private void Start()
     {
-        StartCoroutine(getFloor("Floor3"));
+        //StartCoroutine(getFloor("Floor3"));
     }
 
+    //---------------------------------------------------------START OF THE GAME-------------------------------------------------------------------------//
+    IEnumerator blackRoom(){
+        GameObject br = Instantiate(blackRoom, new Vector3(0,0,0), Quaternion.identity);
+    }
     //--------------------------------------------------------------- DATA API --------------------------------------------------------------------------//
     IEnumerator getFloor(string floorName){
         // Sending API request
