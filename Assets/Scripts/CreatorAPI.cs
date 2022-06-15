@@ -21,7 +21,8 @@ public class CreatorAPI : MonoBehaviour
     [SerializeField] GameObject floor;
     [SerializeField] GameObject door;
     [SerializeField] GameObject window;
-
+    [SerializeField] string ipAddress;
+    [SerializeField] string building;
     public string jsonURL;
 
     private void Start()
@@ -33,7 +34,7 @@ public class CreatorAPI : MonoBehaviour
     IEnumerator getFloor(string floorName){
         // Sending API request
         // http://192.168.98.159:1026/ngsi-ld/v1/entities/Etoile%3AFloor3
-            WWW _www = new WWW("http://192.168.98.159:1026/ngsi-ld/v1/entities/Etoile:"+ floorName);
+            WWW _www = new WWW("http://" + ipAddress + ":1026/ngsi-ld/v1/entities/" + building + ":"+ floorName);
 
             yield return _www;
 
@@ -87,7 +88,7 @@ public class CreatorAPI : MonoBehaviour
     IEnumerator getRoom(string roomName){
         // Sending API request
         // http://192.168.98.159:1026/ngsi-ld/v1/entities/Etoile%3AFloor3
-            WWW _www = new WWW("http://192.168.98.159:1026/ngsi-ld/v1/entities/"+ roomName);
+            WWW _www = new WWW("http://" + ipAddress + ":1026/ngsi-ld/v1/entities/"+ roomName);
 
             yield return _www;
 
@@ -138,7 +139,7 @@ public class CreatorAPI : MonoBehaviour
     {
     // Sending API request
     // http://192.168.98.159:1026/ngsi-ld/v1/entities/windowName
-        WWW _www = new WWW("http://192.168.98.159:1026/ngsi-ld/v1/entities/"+ windowName);
+        WWW _www = new WWW("http://" + ipAddress + ":1026/ngsi-ld/v1/entities/"+ windowName);
 
         yield return _www;
 
@@ -175,7 +176,7 @@ public class CreatorAPI : MonoBehaviour
     {
     // Sending API request
     // http://192.168.98.159:1026/ngsi-ld/v1/entities/windowName
-        WWW _www = new WWW("http://192.168.98.159:1026/ngsi-ld/v1/entities/"+ doorName);
+        WWW _www = new WWW("http://" + ipAddress + ":1026/ngsi-ld/v1/entities/"+ doorName);
 
         yield return _www;
 

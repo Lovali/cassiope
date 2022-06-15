@@ -1880,8 +1880,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1796156426}
-  - component: {fileID: 1796156427}
   - component: {fileID: 1796156428}
+  - component: {fileID: 1796156429}
+  - component: {fileID: 1796156427}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -1910,16 +1911,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796156425}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 284f52a6df3a8cd45b25053ca036de02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 1651957737802843839, guid: fcad070a111ef5c4390c2d61a32dab7b, type: 3}
-  floor: {fileID: 3447738114613286240, guid: bc7f1d7e24180764a9806f5a4b78273d, type: 3}
-  door: {fileID: 1457596513137136941, guid: 11972aa3941918a4d8b3fadcf19f40f7, type: 3}
-  window: {fileID: 4191137397381135423, guid: 0df8e340195e2a249bf3471552375ef1, type: 3}
-  IOT: {fileID: 8224257319237442745, guid: 7a02c6765860e224eb306dd86e4b25f7, type: 3}
+  wall: {fileID: 0}
+  floor: {fileID: 0}
+  door: {fileID: 0}
+  window: {fileID: 0}
+  IOT: {fileID: 0}
 --- !u!114 &1796156428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1950,6 +1951,25 @@ MonoBehaviour:
   isMeshCustom: 0
   customMeshCollider:
     variants: []
+--- !u!114 &1796156429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796156425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebb0df7e07cde44da4325b6d660bd94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wall: {fileID: 1651957737802843839, guid: fcad070a111ef5c4390c2d61a32dab7b, type: 3}
+  floor: {fileID: 3447738114613286240, guid: bc7f1d7e24180764a9806f5a4b78273d, type: 3}
+  door: {fileID: 1457596513137136941, guid: 11972aa3941918a4d8b3fadcf19f40f7, type: 3}
+  window: {fileID: 4191137397381135423, guid: 0df8e340195e2a249bf3471552375ef1, type: 3}
+  ipAddress: 192.168.98.244
+  building: Etoile
+  jsonURL: 
 --- !u!1 &1805527336
 GameObject:
   m_ObjectHideFlags: 0
