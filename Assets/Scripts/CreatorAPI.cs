@@ -30,12 +30,17 @@ public class CreatorAPI : MonoBehaviour
     private void Start()
     {
         //StartCoroutine(getFloor("Floor3"));
+        blackRoomCreator();
     }
 
     //---------------------------------------------------------START OF THE GAME-------------------------------------------------------------------------//
-    IEnumerator blackRoom(){
+    void blackRoomCreator(){
         GameObject br = Instantiate(blackRoom, new Vector3(0,0,0), Quaternion.identity);
+        br.transform.parent = gameObject.transform;
+        br.transform.localScale = new Vector3(20, 20, 20);
     }
+
+
     //--------------------------------------------------------------- DATA API --------------------------------------------------------------------------//
     IEnumerator getFloor(string floorName){
         // Sending API request

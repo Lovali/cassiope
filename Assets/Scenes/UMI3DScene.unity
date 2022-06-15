@@ -1882,7 +1882,6 @@ GameObject:
   - component: {fileID: 1796156426}
   - component: {fileID: 1796156428}
   - component: {fileID: 1796156429}
-  - component: {fileID: 1796156427}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -1904,23 +1903,6 @@ Transform:
   m_Father: {fileID: 1484926649}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1796156427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1796156425}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 284f52a6df3a8cd45b25053ca036de02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wall: {fileID: 0}
-  floor: {fileID: 0}
-  door: {fileID: 0}
-  window: {fileID: 0}
-  IOT: {fileID: 0}
 --- !u!114 &1796156428
 MonoBehaviour:
   m_ObjectHideFlags: 0
