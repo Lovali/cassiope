@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 6891505194970277595}
   - component: {fileID: 8953015688343464096}
   - component: {fileID: -42951136719504116}
+  - component: {fileID: 7977508739435679629}
+  - component: {fileID: 5985640123184959885}
   m_Layer: 0
   m_Name: SelectButton
   m_TagString: Untagged
@@ -63,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bbc9c96b7f54664488c77022a86b28aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -211,7 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsSubInteraction: 0
   Display:
-    name: 
+    name: Select
     description: 
     icon2D:
       variants: []
@@ -229,17 +231,56 @@ MonoBehaviour:
   onTrigger:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 7137ee177736cad489f3f18b361e86db, type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 7977508739435679629}
+        m_MethodName: Select
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7977508739435679629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414525793486472027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7137ee177736cad489f3f18b361e86db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 6891505194970277595}
+  black_room: {fileID: 8609944446853079227, guid: d351c763a54417c46b9606204e7e15ff,
+    type: 3}
+  ipAddress: 192.168.98.244
+--- !u!114 &5985640123184959885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414525793486472027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebb0df7e07cde44da4325b6d660bd94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wall: {fileID: 1651957737802843839, guid: fcad070a111ef5c4390c2d61a32dab7b, type: 3}
+  floor: {fileID: 3447738114613286240, guid: bc7f1d7e24180764a9806f5a4b78273d, type: 3}
+  door: {fileID: 1457596513137136941, guid: 11972aa3941918a4d8b3fadcf19f40f7, type: 3}
+  window: {fileID: 4191137397381135423, guid: 0df8e340195e2a249bf3471552375ef1, type: 3}
+  IOT: {fileID: 8224257319237442745, guid: 7a02c6765860e224eb306dd86e4b25f7, type: 3}
+  blackRoom: {fileID: 8609944446853079227, guid: d351c763a54417c46b9606204e7e15ff,
+    type: 3}
+  selectBuildingButton: {fileID: 414525793486472027}
+  ipAddress: 192.168.98.244
+  building: Etoile
+  jsonURL: 
 --- !u!1 &593390556314679654
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

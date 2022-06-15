@@ -1952,6 +1952,8 @@ MonoBehaviour:
   IOT: {fileID: 8224257319237442745, guid: 7a02c6765860e224eb306dd86e4b25f7, type: 3}
   blackRoom: {fileID: 8609944446853079227, guid: d351c763a54417c46b9606204e7e15ff,
     type: 3}
+  selectBuildingButton: {fileID: 414525793486472027, guid: 01e452d54ba96a04fb7b901e7c8f69be,
+    type: 3}
   ipAddress: 192.168.98.244
   building: Etoile
   jsonURL: 

@@ -6,13 +6,9 @@ using Newtonsoft.Json.Linq;
 public class SelectBuilding : MonoBehaviour
 {
     public umi3d.edk.UMI3DModel model;
-    [SerializeField] umi3d.edk.UMI3DNode floor_br_node;
-    [SerializeField] umi3d.edk.UMI3DNode wall1_br_node;
-    [SerializeField] umi3d.edk.UMI3DNode wall2_br_node;
-    [SerializeField] umi3d.edk.UMI3DNode wall3_br_node;
-    [SerializeField] umi3d.edk.UMI3DNode wall4_br_node;
-    [SerializeField] umi3d.edk.UMI3DNode ceil_br_node;
+    [SerializeField] GameObject black_room;
     [SerializeField] string ipAddress;
+    CreatorAPI creator = new CreatorAPI();
 
     IEnumerator getBuildings()
     {
@@ -47,13 +43,8 @@ public class SelectBuilding : MonoBehaviour
         umi3d.edk.Transaction transaction = new umi3d.edk.Transaction();
         transaction.reliable = true;
         transaction.AddIfNotNull(model.objectActive.SetValue(false));
-        transaction.AddIfNotNull(floor_br_node.objectActive.SetValue(false));
-        transaction.AddIfNotNull(wall1_br_node.objectActive.SetValue(false));
-        transaction.AddIfNotNull(wall2_br_node.objectActive.SetValue(false));
-        transaction.AddIfNotNull(wall3_br_node.objectActive.SetValue(false));
-        transaction.AddIfNotNull(wall4_br_node.objectActive.SetValue(false));
-        transaction.AddIfNotNull(ceil_br_node.objectActive.SetValue(false));
-        StartCoroutine(getBuildings());
+        black_room.SetActive(false);
+        StartCoroutine(creator.getFloor("Floor3"));
         transaction.Dispatch();
         Debug.Log("Open");
     }

@@ -23,6 +23,7 @@ public class CreatorAPI : MonoBehaviour
     [SerializeField] GameObject window;
     [SerializeField] GameObject IOT;
     [SerializeField] GameObject blackRoom;
+    [SerializeField] GameObject selectBuildingButton;
     [SerializeField] string ipAddress;
     [SerializeField] string building;
     public string jsonURL;
@@ -35,17 +36,20 @@ public class CreatorAPI : MonoBehaviour
 
     //---------------------------------------------------------START OF THE GAME-------------------------------------------------------------------------//
     void blackRoomCreator(){
-        GameObject floor_br = Instantiate(floor, new Vector3(0,0,0), Quaternion.identity);
-        floor_br.transform.parent = gameObject.transform;
-        floor_br.transform.localScale = new Vector3(50, 1, 50);
+        //GameObject floor_br = Instantiate(floor, new Vector3(0,0,0), Quaternion.identity);
+        //floor_br.transform.parent = gameObject.transform;
+        //floor_br.transform.localScale = new Vector3(1, 1, 1);
         GameObject br = Instantiate(blackRoom, new Vector3(0,-10,0), Quaternion.identity);
         br.transform.parent = gameObject.transform;
-        br.transform.localScale = new Vector3(1, 1, 1);
+        //br.transform.localScale = new Vector3(1, 1, 1);
+        //GameObject button = Instantiate(selectBuildingButton, new Vector3(0, -8, 0), Quaternion.identity);
+        //button.transform.parent = gameObject.transform;
+        //button.transform.localScale = new Vector3(5, 1, 1);
     }
 
 
     //--------------------------------------------------------------- DATA API --------------------------------------------------------------------------//
-    IEnumerator getFloor(string floorName){
+    public IEnumerator getFloor(string floorName){
         // Sending API request
         // http://192.168.98.159:1026/ngsi-ld/v1/entities/Etoile%3AFloor3
             WWW _www = new WWW("http://" + ipAddress + ":1026/ngsi-ld/v1/entities/" + building + ":"+ floorName);
