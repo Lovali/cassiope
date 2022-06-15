@@ -35,9 +35,12 @@ public class CreatorAPI : MonoBehaviour
 
     //---------------------------------------------------------START OF THE GAME-------------------------------------------------------------------------//
     void blackRoomCreator(){
-        GameObject br = Instantiate(blackRoom, new Vector3(0,0,0), Quaternion.identity);
+        GameObject floor_br = Instantiate(floor, new Vector3(0,0,0), Quaternion.identity);
+        floor_br.transform.parent = gameObject.transform;
+        floor_br.transform.localScale = new Vector3(50, 1, 50);
+        GameObject br = Instantiate(blackRoom, new Vector3(0,-10,0), Quaternion.identity);
         br.transform.parent = gameObject.transform;
-        br.transform.localScale = new Vector3(20, 20, 20);
+        br.transform.localScale = new Vector3(1, 1, 1);
     }
 
 
