@@ -33,7 +33,7 @@ public class CreatorAPI : MonoBehaviour
     }
 
     //---------------------------------------------------------START OF THE GAME-------------------------------------------------------------------------//
-    IEnumerator blackRoom(){
+    IEnumerator makeBlackRoom(){
         GameObject br = Instantiate(blackRoom, new Vector3(0,0,0), Quaternion.identity);
     }
     //--------------------------------------------------------------- DATA API --------------------------------------------------------------------------//
