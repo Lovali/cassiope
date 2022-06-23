@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45142454, g: 0.5008264, b: 0.5718279, a: 1}
+  m_IndirectSpecularColor: {r: 0.45142472, g: 0.5008268, b: 0.57182854, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1950,6 +1950,10 @@ MonoBehaviour:
   door: {fileID: 1457596513137136941, guid: 11972aa3941918a4d8b3fadcf19f40f7, type: 3}
   window: {fileID: 4191137397381135423, guid: 0df8e340195e2a249bf3471552375ef1, type: 3}
   IOT: {fileID: 8224257319237442745, guid: 7a02c6765860e224eb306dd86e4b25f7, type: 3}
+  blackRoom: {fileID: 8609944446853079227, guid: d351c763a54417c46b9606204e7e15ff,
+    type: 3}
+  selectBuildingButton: {fileID: 414525793486472027, guid: 01e452d54ba96a04fb7b901e7c8f69be,
+    type: 3}
   ipAddress: 192.168.98.244
   building: Etoile
   jsonURL: 
