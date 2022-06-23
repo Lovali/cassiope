@@ -1,14 +1,19 @@
 {
-    "id": "id_building:iot1",
+    "id": "Etoile:Floor3:iot1",
     "type": "IoT",
     "location": {
-        "type":"Geoproperty",
+        "type":"GeoProperty",
         "value": {
-            "type":"Linestring",
+            "type":"LineString",
             "coordinates": [
                     [
                         48.0,
                         8.0,
+                        0.5
+                    ],
+                    [
+                        48.0,
+                        8.1,
                         0.5
                     ]
                 ]
@@ -18,5 +23,5 @@
         "type": "Property",
         "value": 0.5
     },
-    "@context": "Nothing for now"
+    "@context": [{"myshortname": "urn:iot"},"https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"]
 }

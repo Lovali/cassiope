@@ -18,7 +18,7 @@
         "object": "Etoile:Floor3"
     },
     "location": {
-        "type": "Geoproperty",
+        "type": "GeoProperty",
         "value": {
             "type": "Polygon",
             "coordinates": [
@@ -51,5 +51,6 @@
         "type": "Property",
         "value": 4
     }, 
-    "@context": "Nothing for now"
+    "@context": [{"Floor": "urn:mytypes:room", "location": "myuniqueuri:location"},"https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"]
+
 }
